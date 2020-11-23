@@ -4,6 +4,18 @@
     $uten_util = "";
     $tit_plat = "";
     $desc_plat = "";
+    $desc_paso_1 = "";
+    $uten_paso_1 = "";
+    $desc_paso_2 = "";
+    $uten_paso_2 = "";
+    $desc_paso_3 = "";
+    $uten_paso_3 = "";
+    $time_paso_1 = "";
+    $time_paso_2 = "";
+    $time_paso_3 = "";
+    $comen_paso_1 = "";
+    $comen_paso_2 = "";
+    $comen_paso_3 = "";
 ?>
 
 <!doctype html>
@@ -13,6 +25,13 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <script>
+        function ret() {
+            document.getElementById("btn-send").style.display = "inline";
+            document.getElementById("btn-verif").style.display = "none";
+        }
+    </script>
 
     <!-- Style Personal -->
     <link rel="stylesheet" href="css/style.css">
@@ -101,7 +120,7 @@
         <h1>
             <font size=7 color="#4b3621">Crear Receta</font>
         </h1>
-        <form action="add.php" method="POST"> <br>
+        <form action="add.php" method="POST" enctype="multipart/form-data"> <br>
             <div class="row">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-4">
@@ -143,8 +162,6 @@
                     </div>
 
                     <?php 
-                        $uten_util = "";
-                        
                         if (isset($_POST['uten-util-1'])) {
                             $uten_util = $uten_util." Pinza ";
                         } 
@@ -194,46 +211,80 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <label><font size=5 color="#4b3621">Descripcion del Paso</font></label>
-                            <textarea class="form-control" id="" rows="7"></textarea>
+                            <textarea class="form-control" name="desc-paso-1" rows="7"></textarea>
+
+                            <?php 
+                                if (isset($_POST['desc-paso-1'])) {
+                                    $desc_paso_1 = $_POST['desc-paso-1'];
+                                }
+                            ?>
                         </div>
                         <div class="col-sm-6">
                             <label><font size=5 color="#4b3621">Utensilios</font></label> <br>
                             <label><font size=3 color="#4b3621">Seleccione los utensilios que se utilizarán en este paso</font></label> <br> <br>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="" value="">
+                                <input class="form-check-input" type="checkbox" name="uten-paso-1" value="">
                                 <label class="form-check-label">Pinza</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="" value="">
+                                <input class="form-check-input" type="checkbox" name="uten-paso-2" value="">
                                 <label class="form-check-label">Cucharon</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="" value="">
+                                <input class="form-check-input" type="checkbox" name="uten-paso-3" value="">
                                 <label class="form-check-label">Colador</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="" value="">
+                                <input class="form-check-input" type="checkbox" name="uten-paso-5" value="">
                                 <label class="form-check-label">Cuchillo</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="" value="">
+                                <input class="form-check-input" type="checkbox" name="uten-paso-5" value="">
                                 <label class="form-check-label">Rayador</label>
                             </div>
+                            
+                            <?php                         
+                                if (isset($_POST['uten-paso-1'])) {
+                                    $uten_paso_1 = $uten_paso_1." Pinza ";
+                                } 
+                                if (isset($_POST['uten-util-2'])) {
+                                    $uten_paso_1 = $uten_paso_1." Cucharon ";
+                                } 
+                                if (isset($_POST['uten-util-3'])) {
+                                    $uten_paso_1 = $uten_paso_1." Colador ";
+                                } 
+                                if (isset($_POST['uten-util-4'])) {
+                                    $uten_paso_1 = $uten_paso_1." Cuchillo ";
+                                } 
+                                if (isset($_POST['uten-util-5'])) {
+                                    $uten_paso_1 = $uten_paso_1." Rayador ";
+                                } 
+                            ?>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6"> <br>
                             <label><font size=5 color="#4b3621">Tiempo</font></label> <br>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="example: 1:30 / 0:30">
+                                <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="example: 1:30 / 0:30" name="time-paso-1">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">horas</div>
                                 </div>
+                                <?php 
+                                    if (isset($_POST['time-paso-1'])) {
+                                        $time_paso_1 = $_POST['time-paso-1'];
+                                    }
+                                ?>
                             </div>
                         </div>
                         <div class="col-sm-6"> <br>
-                            <label><font size=5 color="#4b3621">Ingrediente Principal</font></label> <br>
-                            <input type="text" class="form-control" id=""> <br>
+                            <label><font size=5 color="#4b3621">Comentario</font></label> <br>
+                            <input type="text" class="form-control" name="comen-paso-1"> <br>
+                            <?php 
+                                if (isset($_POST['comen-paso-1'])) {
+                                    $comen_paso_1 = $_POST['comen-paso-1'];
+                                }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -248,46 +299,81 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <label><font size=5 color="#4b3621">Descripcion del Paso</font></label>
-                            <textarea class="form-control" id="" rows="7"></textarea>
+                            <textarea class="form-control" name="desc-paso-2" rows="7"></textarea>
+                            
+                            <?php 
+                                if (isset($_POST['desc-paso-2'])) {
+                                    $desc_paso_2 = $_POST['desc-paso-2'];
+                                }
+                            ?>
                         </div>
                         <div class="col-sm-6">
                             <label><font size=5 color="#4b3621">Utensilios</font></label> <br>
                             <label><font size=3 color="#4b3621">Seleccione los utensilios que se utilizarán en este paso</font></label> <br> <br>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="" value="">
+                                <input class="form-check-input" type="checkbox" name="uten-paso-2-1" value="">
                                 <label class="form-check-label">Pinza</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="" value="">
+                                <input class="form-check-input" type="checkbox" name="uten-paso-2-2" value="">
                                 <label class="form-check-label">Cucharon</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="" value="">
+                                <input class="form-check-input" type="checkbox" name="uten-paso-2-3" value="">
                                 <label class="form-check-label">Colador</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="" value="">
+                                <input class="form-check-input" type="checkbox" name="uten-paso-2-4" value="">
                                 <label class="form-check-label">Cuchillo</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="" value="">
+                                <input class="form-check-input" type="checkbox" name="uten-paso-2-5" value="">
                                 <label class="form-check-label">Rayador</label>
                             </div>
+
+                            <?php                         
+                                if (isset($_POST['uten-paso-2-1'])) {
+                                    $uten_paso_2 = $uten_paso_2." Pinza ";
+                                } 
+                                if (isset($_POST['uten-paso-2-2'])) {
+                                    $uten_paso_2 = $uten_paso_2." Cucharon ";
+                                } 
+                                if (isset($_POST['uten-paso-2-3'])) {
+                                    $uten_paso_2 = $uten_paso_2." Colador ";
+                                } 
+                                if (isset($_POST['uten-paso-2-4'])) {
+                                    $uten_paso_2 = $uten_paso_2." Cuchillo ";
+                                } 
+                                if (isset($_POST['uten-paso-2-5'])) {
+                                    $uten_paso_2 = $uten_paso_2." Rayador ";
+                                } 
+                            ?>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6"> <br>
                             <label><font size=5 color="#4b3621">Tiempo</font></label> <br>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="example: 1:30 / 0:30">
+                                <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="example: 1:30 / 0:30" name="time-paso-2">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">horas</div>
                                 </div>
+                                
+                                <?php 
+                                    if (isset($_POST['time-paso-2'])) {
+                                        $time_paso_2 = $_POST['time-paso-2'];
+                                    }
+                                ?>
                             </div>
                         </div>
                         <div class="col-sm-6"> <br>
-                            <label><font size=5 color="#4b3621">Ingrediente Principal</font></label> <br>
-                            <input type="text" class="form-control" id=""> <br>
+                            <label><font size=5 color="#4b3621">Comentario</font></label> <br>
+                            <input type="text" class="form-control" name="comen-paso-2"> <br>
+                            <?php 
+                                if (isset($_POST['comen-paso-2'])) {
+                                    $comen_paso_2 = $_POST['comen-paso-2'];
+                                }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -302,46 +388,83 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <label><font size=5 color="#4b3621">Descripcion del Paso</font></label>
-                            <textarea class="form-control" id="" rows="7"></textarea>
+                            <textarea class="form-control" name="desc-paso-3" rows="7"></textarea>
+                            
+                            <?php 
+                                if (isset($_POST['desc-paso-3'])) {
+                                    $desc_paso_3 = $_POST['desc-paso-3'];
+                                }
+                            ?>
                         </div>
                         <div class="col-sm-6">
                             <label><font size=5 color="#4b3621">Utensilios</font></label> <br>
                             <label><font size=3 color="#4b3621">Seleccione los utensilios que se utilizarán en este paso</font></label> <br> <br>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="" value="">
+                                <input class="form-check-input" type="checkbox" name="uten-paso-3-1" value="">
                                 <label class="form-check-label">Pinza</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="" value="">
+                                <input class="form-check-input" type="checkbox" name="uten-paso-3-2" value="">
                                 <label class="form-check-label">Cucharon</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="" value="">
+                                <input class="form-check-input" type="checkbox" name="uten-paso-3-3" value="">
                                 <label class="form-check-label">Colador</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="" value="">
+                                <input class="form-check-input" type="checkbox" name="uten-paso-3-4" value="">
                                 <label class="form-check-label">Cuchillo</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="" value="">
+                                <input class="form-check-input" type="checkbox" name="uten-paso-3-5" value="">
                                 <label class="form-check-label">Rayador</label>
                             </div>
+
+                            <?php                         
+                                if (isset($_POST['uten-paso-3-1'])) {
+                                    $uten_paso_3 = $uten_paso_3." Pinza ";
+                                } 
+                                if (isset($_POST['uten-paso-3-2'])) {
+                                    $uten_paso_3 = $uten_paso_3." Cucharon ";
+                                } 
+                                if (isset($_POST['uten-paso-3-3'])) {
+                                    $uten_paso_3 = $uten_paso_3." Colador ";
+                                } 
+                                if (isset($_POST['uten-paso-3-4'])) {
+                                    $uten_paso_3 = $uten_paso_3." Cuchillo ";
+                                } 
+                                if (isset($_POST['uten-paso-3-5'])) {
+                                    $uten_paso_3 = $uten_paso_3." Rayador ";
+                                } 
+                            ?>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6"> <br>
                             <label><font size=5 color="#4b3621">Tiempo</font></label> <br>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="example: 1:30 / 0:30">
+                                <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="example: 1:30 / 0:30" name="time-paso-3">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">horas</div>
                                 </div>
+
+                                <?php 
+                                    if (isset($_POST['time-paso-3'])) {
+                                        $time_paso_3 = $_POST['time-paso-3'];
+                                    }
+                                ?>
                             </div>
                         </div>
                         <div class="col-sm-6"> <br>
-                            <label><font size=5 color="#4b3621">Ingrediente Principal</font></label> <br>
-                            <input type="text" class="form-control" id=""> <br>
+                            <label><font size=5 color="#4b3621">Comentario</font></label> <br>
+                            <input type="text" class="form-control" name="comen-paso-3"> <br>
+                            <?php 
+                                if (isset($_POST['comen-paso-3'])) {
+                                    $comen_paso_3 = $_POST['comen-paso-3'];
+                                }
+
+                                echo $comen_paso_3;
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -349,16 +472,40 @@
 
             <hr color="white">
 
-            <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-8"> <br>
-                    <label><font size=5 color="#4b3621">Tipo de Presentación</font></label>
-                    <textarea class="form-control" id="" rows="3"></textarea>
-                </div>
-            </div><br>
-            <input type="submit" class="btn btn-outline-success"></input>
+           <!-- <div class="suggest">
+                <label for="foto"><font size=5 color="#4b3621">Imagen del Platillo</font></label> <br>
+                <input type="file" class="form-control-file" id="foto" aria-describedby="fileHelp" name="foto" style="display:none;">
+                <button type="button" class="btn btn-outline-primary" onclick="document.getElementById('foto').click()">Subir Imagen</button>
+                <small id="fileHelp" class="form-text text-muted">Inserta la imagen representativa de tu platillo</small>
+            </div>-->
+
+            <hr color="white">
+
+            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal" id="btn-verif">Verificar</button>
+            <input type="submit" class="btn btn-outline-success" value="Enviar" style="display:none;" id="btn-send"></input>
         </form>
     </center>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Deseas enviar esta receta?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-info" data-dismiss="modal">Editar</button>
+                    <button type="button" class="btn btn-outline-success" data-dismiss="modal" onclick="ret()">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

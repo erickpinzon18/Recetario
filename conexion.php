@@ -2,9 +2,9 @@
     $con = mysqli_connect("localhost", "root", "", "recetario");
 
     if (mysqli_connect_errno()) {
-        echo "No se pudo conectar a la base de datos : ".mysqli_connect_error();
+        echo "<p style='display: none;' id='conexion-bd'>No se pudo conectar a la base de datos :</p>".mysqli_connect_error();
     }
     else {
-        echo "Conexion correcta";
+        echo "<p style='display: none;' id='conexion-bd'>Conexion establecida</p>";
     }
 ?>
