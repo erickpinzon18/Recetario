@@ -1,0 +1,43 @@
+.bg-index {
+    background-image: url("http://fotoram.io/editor/files/2020/11/21/1605935150_13785.jpg");
+    background-size: 100%;
+    background-position: center top;
+    background-attachment: fixed;
+    font-family: Segoe UI;
+}
+
+.bg-add {
+    background-image: url("http://fotoram.io/editor/files/2020/11/21/1605937288_34764.jpg");
+    background-size: 100%;
+    background-position: center top;
+    background-attachment: fixed;
+    font-family: Segoe UI;
+}
+
+.nav-obs {
+    background-color: rgba(0, 0, 0, 0.11);
+}
+
+.hr {
+    border: 0 solid #eeedef;
+    border-top-width: 15px;
+    margin: 40px auto;
+    width: 100%;
+}
+
+.tittle-center {
+    font-family: Edwardian Script ITC;
+    font-size: 70px;
+    font-weight: 600;
+    color: honeydew;
+}
+
+.suggest {
+    border-radius: 15px;
+    background-color: rgba(145, 125, 82, 0.5);
+    width: 50%;
+}
+
+.hide {
+    display: none;
+}
