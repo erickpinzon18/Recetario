@@ -18,7 +18,7 @@
 <body class="bg-index">
     <!-- NAV -->
     <nav class="navbar navbar-expand-lg nav-obs">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="index.php">
             <img src="https://img.icons8.com/android/24/000000/fork.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
             <font size=5 color="black">RECETARIO</font>
         </a>
@@ -29,7 +29,7 @@
         <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto justify-content-center">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="index.php">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <font color="white" size=4>
                             Inicio
@@ -122,9 +122,52 @@
 
     <!-- Sugerencias -->
     <center>
-        <div class="suggest">
-            <br><br><br><br>
-        </div>
+        <div class="suggest">  <br><br>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="card border-primary mb-3 ml-2 mr-1">
+                        <div class="card-header">
+                            <?php 
+                                $sql = mysqli_query($con, 'SELECT `nombre_receta` FROM `receta` WHERE contador = 5');
+
+                                if(mysqli_num_rows($sql) != 0) {
+                                    $row = mysqli_fetch_assoc($sql);
+                                } else {
+                                    header("Location: index.php");
+                                }
+                                
+                                echo $row ['contador'];
+                            ?>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Primary card title</h4>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                            card's content.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card border-primary mb-3 ml-1 mr-1">
+                        <div class="card-header">Header</div>
+                        <div class="card-body">
+                            <h4 class="card-title">Primary card title</h4>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                            card's content.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card border-primary mb-3 ml-1 mr-2">
+                        <div class="card-header">Header</div>
+                        <div class="card-body">
+                            <h4 class="card-title">Primary card title</h4>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                            card's content.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>        
+        <br><br></div>
     </center>
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
