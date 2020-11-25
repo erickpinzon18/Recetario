@@ -1,23 +1,5 @@
 <?php 
     include("conexion.php");
-    
-  
-    $tipo_comida = "";
-    $uten_util = "";
-    $tit_plat = "";
-    $desc_plat = "";
-    $desc_paso_1 = "";
-    $uten_paso_1 = "";
-    $desc_paso_2 = "";
-    $uten_paso_2 = "";
-    $desc_paso_3 = "";
-    $uten_paso_3 = "";
-    $time_paso_1 = "";
-    $time_paso_2 = "";
-    $time_paso_3 = "";
-    $comen_paso_1 = "";
-    $comen_paso_2 = "";
-    $comen_paso_3 = "";
 ?>
 
 <!doctype html>
@@ -32,6 +14,10 @@
         function ret() {
             document.getElementById("btn-send").style.display = "inline";
             document.getElementById("btn-verif").style.display = "none";
+        }
+
+        function click() {
+            document.getElementById("btn-pasos").click();
         }
     </script>
 
@@ -181,13 +167,19 @@
 
             <hr color="white">
 
-            <font size=6 color="#4b3621">Paso 1</font>
+            <font size=6 color="#4b3621">Pasos</font>
             <div class="row">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-8"> <br>
                     <div class="row">
                         <div class="col-sm-6">
+                            <font size=5 color="#4b3621">¿Cuantos pasos realizará?</font>
+                            <input type="number" class="form-control" onchange="click()" id="n-pasos" name="n-pasos">
+                            <input type="submit" style="display:none;" id="btn-pasos"></input>
 
+                            <?php
+                                    
+                            ?>
                         </div>
                         <div class="col-sm-6">
                     
@@ -204,11 +196,7 @@
                 </div>
             </div>
 
-            <hr color="white">
-
-            <!--<hr color="white">
-
-            <div class="suggest">
+            <!--<div class="suggest">
                 <label for="foto"><font size=5 color="#4b3621">Imagen del Platillo</font></label> <br>
                 <input type="file" class="form-control-file" id="foto" aria-describedby="fileHelp" name="foto" style="display:none;">
                 <button type="button" class="btn btn-outline-primary" onclick="document.getElementById('foto').click()">Subir Imagen</button>
