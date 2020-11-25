@@ -108,7 +108,7 @@
         <h1>
             <font size=7 color="#4b3621">Crear Receta</font>
         </h1>
-        <form action="add.php" method="POST" enctype="multipart/form-data"> <br>
+        <form action="add.php" method="POST"> <br>
             <div class="row">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-4"> <br>
@@ -171,30 +171,30 @@
             <div class="row">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-8"> <br>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <font size=5 color="#4b3621">¿Cuantos pasos realizará?</font>
-                            <input type="number" class="form-control" onchange="click()" id="n-pasos" name="n-pasos">
-                            <input type="submit" style="display:none;" id="btn-pasos"></input>
-
-                            <?php
-                                    
-                            ?>
-                        </div>
-                        <div class="col-sm-6">
-                    
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6"> <br>
-                            
-                        </div>
-                        <div class="col-sm-6"> <br>
-                            
-                        </div>
-                    </div>
+                    <font size=5 color="#4b3621">¿Cuantos pasos realizará?</font>
+                    <input type="number" class="form-control" onchange="click()" id="n-pasos" name="num-pasos" style="width: 50%;">
+                    <input type="submit" style="display:none;" id="btn-pasos"></input>
                 </div>
             </div>
+
+            <?php
+                $n_pasos = 1;
+                $i = 1;
+                $n_pasos = $_POST["num-pasos"];
+
+                while ($i <= $n_pasos) {
+            ?>
+                <font size=6 color="#4b3621">Paso <?php echo $i ?></font>
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8"> <br>
+                        <font size=5 color="#4b3621">¿Cuantos pasos realizará?</font>
+                    </div>
+                </div>
+            <?php
+                    $i++;
+                }
+            ?>
 
             <!--<div class="suggest">
                 <label for="foto"><font size=5 color="#4b3621">Imagen del Platillo</font></label> <br>
