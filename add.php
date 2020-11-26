@@ -188,13 +188,151 @@
                 <div class="row">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-8"> <br>
-                        <font size=5 color="#4b3621">¿Cuantos pasos realizará?</font>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <font size=5 color="#4b3621">¿Qué vas a hacer?</font> <br>
+                                <select name="" id="" class="form-control">
+                                    <option value="" selected>Seleccione lo que va hacer</option>
+                                    <?php   
+                                        include("conexion.php");
+
+                                        $sql_count_paso = mysqli_query($con, 'SELECT COUNT(*) FROM `paso`'); 
+
+                                        if(mysqli_num_rows($sql_count_paso) != 0) {
+                                            $row = mysqli_fetch_assoc($sql_count_paso);
+                                        } else {
+                                            echo '<script>alert("Consulta Erronea");</script>';
+                                        }
+
+                                        $n_paso = (int)$row['COUNT(*)'];
+                                        $s = 0;
+
+                                        while($s < $n_paso) {
+                                            
+                                            $sql_paso = mysqli_query($con, "SELECT * FROM `paso` WHERE `id_paso` = '$s'");
+
+                                            if(mysqli_num_rows($sql_paso) != 0) {
+                                                $row = mysqli_fetch_assoc($sql_paso);
+                                            } else {
+                                                echo '<script>alert("Consulta Erronea");</script>';
+                                            }
+                                    ?>
+                                        <option value=""><?php
+                                                                echo $row['descripcion']    
+                                                            ?>
+                                        </option>
+                                    <?php    
+                                            $s++;
+                                        }
+                                    ?>
+
+                                </select> <br>
+
+                                <label><font size=5 color="#4b3621">¿No esta su paso?</font></label> <br>
+                                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal3">Agregar</button>
+
+                            </div>
+                            <div class="col-sm-4">
+                                <font size=5 color="#4b3621">¿Qué utensilios vas a utilizar?</font>
+                                <select name="" id="" class="form-control">
+                                    <option value="" selected>Seleccione lo que va utilizar</option>
+                                    <?php   
+                                        include("conexion.php");
+
+                                        $sql_count_ob = mysqli_query($con, 'SELECT COUNT(*) FROM `utensilio`'); 
+
+                                        if(mysqli_num_rows($sql_count_ob) != 0) {
+                                            $row = mysqli_fetch_assoc($sql_count_ob);
+                                        } else {
+                                            echo '<script>alert("Consulta Erronea");</script>';
+                                        }
+
+                                        $n_ob = (int)$row['COUNT(*)'];
+                                        $n = 0;
+
+                                        while($n < $n_ob) {
+                                            
+                                            $sql_ob = mysqli_query($con, "SELECT * FROM `utensilio` WHERE `id_utensilio` = '$n'");
+
+                                            if(mysqli_num_rows($sql_ob) != 0) {
+                                                $row = mysqli_fetch_assoc($sql_ob);
+                                            } else {
+                                                echo '<script>alert("Consulta Erronea");</script>';
+                                            }
+                                    ?>
+                                        <option value=""><?php
+                                                                echo $row['nombre']    
+                                                            ?>
+                                        </option>
+                                    <?php    
+                                            $n++;
+                                        }
+                                    ?>
+
+                                </select> <br>
+
+                                <label><font size=5 color="#4b3621">¿No esta su utensilio?</font></label> <br>
+                                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal4">Agregar</button>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="row">
+                                    <div class="col-sm-9">
+                                        <font size=5 color="#4b3621">¿Qué ingredientes vas a usar?</font>
+                                        <select name="" id="" class="form-control">
+                                            <option value="" selected>Seleccione los ingredientes que va utilizar</option>
+                                            <?php   
+                                                include("conexion.php");
+
+                                                $sql_count_in = mysqli_query($con, 'SELECT COUNT(*) FROM `ingredientes`'); 
+
+                                                if(mysqli_num_rows($sql_count_in) != 0) {
+                                                    $row = mysqli_fetch_assoc($sql_count_in);
+                                                } else {
+                                                    echo '<script>alert("Consulta Erronea");</script>';
+                                                }
+
+                                                $n_in = (int)$row['COUNT(*)'];
+                                                $m = 0;
+
+                                                while($m < $n_in) {
+                                                    
+                                                    $sql_in = mysqli_query($con, "SELECT * FROM `ingredientes` WHERE `id_ingredientes` = '$m'");
+
+                                                    if(mysqli_num_rows($sql_in) != 0) {
+                                                        $row = mysqli_fetch_assoc($sql_in);
+                                                    } else {
+                                                        echo '<script>alert("Consulta Erronea");</script>';
+                                                    }
+                                            ?>
+                                                <option value=""><?php
+                                                                        echo $row['ingrediente']    
+                                                                    ?>
+                                                </option>
+                                            <?php    
+                                                    $m++;
+                                                }
+                                            ?>
+
+                                        </select> <br>
+
+                                        <label><font size=5 color="#4b3621">No esta su ingrediente?</font></label> <br>
+                                        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal2">Agregar</button>
+                                    </div>
+                                    <div class="col-sm-3"><br><br>
+                                        <font size=3 color="#4b3621">¿Cuántas veces lo utilizará?</font> <br><br>
+                                        <input type="number" class="form-control" id="n-ingred" name="n-ingred">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </div> <br>
             <?php
                     $i++;
                 }
             ?>
+
+            
 
             <!--<div class="suggest">
                 <label for="foto"><font size=5 color="#4b3621">Imagen del Platillo</font></label> <br>
@@ -250,6 +388,66 @@
                             <input type="text" name="ing-add" class="form-control" placeholder="example: Salchicha / Peperoni"> <br>
                             <label><font size=5 color="#4b3621">Calorias</font></label> <br>
                             <input type="number" name="cal-add" class="form-control" placeholder="example: 50 / 30"> <br>
+                            <input type="submit" class="btn btn-outline-success" value="Enviar"></input>
+                        </center>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Listo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal (add-paso) -->
+    <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        <label><font size=5 color="#4b3621">Agregar paso</font></label>    
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="add-paso.php" method="POST">
+                        <center>
+                            <label><font size=5 color="#4b3621">Paso</font></label> <br>
+                            <input type="text" name="paso-add" class="form-control" placeholder="example: Hornear / Batir"> <br>
+                            <label><font size=5 color="#4b3621">Tiempo</font></label> <br>
+                            <input type="text" name="time-add" class="form-control" placeholder="example: 50 minutos / 90 minutos"> <br>
+                            <input type="submit" class="btn btn-outline-success" value="Enviar"></input>
+                        </center>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Listo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal (add-ob) -->
+    <div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        <label><font size=5 color="#4b3621">Agregar utensilio</font></label>    
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="add-ob.php" method="POST">
+                        <center>
+                            <label><font size=5 color="#4b3621">Utensilio</font></label> <br>
+                            <input type="text" name="ob-add" class="form-control" placeholder="example: Horno / Cuchara"> <br>
+                            <label><font size=5 color="#4b3621">Ubicacion</font></label> <br>
+                            <input type="text" name="ub-add" class="form-control" placeholder="example: Anaquel 2 / Cajon 1"> <br>
                             <input type="submit" class="btn btn-outline-success" value="Enviar"></input>
                         </center>
                     </form>
