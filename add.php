@@ -1,9 +1,5 @@
 <?php 
     include("conexion.php");
-    $pasos_array = array();
-    $uten_array = array();
-    $ing_array = array();
-    $ing_n_array = array();
 ?>
 
 <!doctype html>
@@ -171,180 +167,236 @@
 
             <hr color="white">
 
-            <font size=6 color="#4b3621">Pasos</font>
+            <font size=6 color="#4b3621">Pasos</font> <br><br>
+
             <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-8"> <br>
-                    <font size=5 color="#4b3621">¿Cuantos pasos realizará?</font>
-                    <input type="number" class="form-control" onchange="click()" id="n-pasos" name="num-pasos" style="width: 50%;">
-                    <input type="submit" style="display:none;" id="btn-pasos"></input>
+                <div class="col-sm-5">
+                    <table class="table table-hover ml-5">
+                        <thead>
+                            <tr class="table-dark">
+                                <th scope="col">paso</th>
+                                <th scope="col">utensilio</th>
+                                <th scope="col">ingredientes</th>
+                                <th scope="col">n_ingredientes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php   
+                                include("conexion.php");
+
+                                $nom_receta = $_POST['titulo-platillo'];
+
+                                $sql_count_receta = mysqli_query($con, "SELECT DISTINCT(id_receta) FROM `receta` WHERE nombre_receta = '$nom_receta'"); 
+
+                                if(mysqli_num_rows($sql_count_receta) != 0) {
+                                    $row = mysqli_fetch_assoc($sql_count_receta);
+                                } else {
+                                    echo '<script>alert("Consulta Erronea");</script>';
+                                }
+
+                                $n_receta = (int)$row['id_receta'];
+
+                                $sql_count_paso_receta = mysqli_query($con, "SELECT COUNT(*) FROM `receta` WHERE id_receta = $n_receta"); 
+
+                                if(mysqli_num_rows($sql_count_paso_receta) != 0) {
+                                    $row = mysqli_fetch_assoc($sql_count_paso_receta);
+                                } else {
+                                    echo '<script>alert("Consulta Erronea");</script>';
+                                }
+
+                                $n_paso_receta = (int)$row['COUNT(*)'];
+                                
+                                $sql_contador_receta = mysqli_query($con, "SELECT MIN(`contador`) FROM `receta` WHERE id_receta = $n_receta"); 
+
+                                if(mysqli_num_rows($sql_contador_receta) != 0) {
+                                    $row = mysqli_fetch_assoc($sql_contador_receta);
+                                } else {
+                                    echo '<script>alert("Consulta Erronea");</script>';
+                                }
+                                
+                                $s = (int)$row['MIN(`contador`)'];
+                                $o = 1;
+
+                                while($o <= $n_paso_receta) {                                    
+                                    $sql_receta_paso = mysqli_query($con, "SELECT * FROM `receta` WHERE contador = '$s'");
+
+                                    if(mysqli_num_rows($sql_receta_paso) != 0) {
+                                        $row = mysqli_fetch_assoc($sql_receta_paso);
+                                    } else {
+                                        echo '<script>alert("Consulta final");</script>';
+                                    }
+                                    $id_paso = (int)$row['id_paso'];
+                                    $id_utensilio = (int)$row['id_utensilio'];
+                                    $id_ingredientes = (int)$row['id_ingredientes'];
+                                    $cantidad_ingredientes = (int)$row['cantidad_ingredientes'];
+                            ?>
+                                <tr class="table-secondary">
+                                    <th scope="row"><?php echo $id_paso; ?></th>
+                                    <td><?php echo $id_utensilio; ?></td>
+                                    <td><?php echo $id_ingredientes; ?></td>
+                                    <td><?php echo $cantidad_ingredientes; ?></td>
+                                </tr>
+                            <?php    
+                                    $s++;
+                                    $o++;
+                                }
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
-            </div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-5">
+                    <font size=5 color="#4b3621" class="mr-5">Agregar</font> <br><br>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <font size=5 color="#4b3621">¿Qué vas a hacer?</font> <br>
+                            <select class="form-control">
+                                <option value="null" selected>Seleccione lo que va hacer</option>
+                                <?php   
+                                    include("conexion.php");
 
-            <?php
-                $n_pasos = 1;
-                $i = 1;
-                $n_pasos = $_POST["num-pasos"];
+                                    $sql_count_paso = mysqli_query($con, 'SELECT COUNT(*) FROM `paso`'); 
 
-                while ($i <= $n_pasos) {
-            ?>
-                <font size=6 color="#4b3621">Paso <?php echo $i ?></font>
-                <div class="row">
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-8"> <br>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <font size=5 color="#4b3621">¿Qué vas a hacer?</font> <br>
-                                <select name="select-paso-n" id="select-paso-<?php echo $i; ?>" class="form-control">
-                                    <option value="null" selected>Seleccione lo que va hacer</option>
-                                    <?php   
-                                        include("conexion.php");
+                                    if(mysqli_num_rows($sql_count_paso) != 0) {
+                                        $row = mysqli_fetch_assoc($sql_count_paso);
+                                    } else {
+                                        echo '<script>alert("Consulta Erronea");</script>';
+                                    }
 
-                                        $sql_count_paso = mysqli_query($con, 'SELECT COUNT(*) FROM `paso`'); 
+                                    $n_paso = (int)$row['COUNT(*)'];
+                                    $s = 0;
 
-                                        if(mysqli_num_rows($sql_count_paso) != 0) {
-                                            $row = mysqli_fetch_assoc($sql_count_paso);
+                                    while($s < $n_paso) {                                    
+                                        $sql_paso = mysqli_query($con, "SELECT * FROM `paso` WHERE `id_paso` = '$s'");
+
+                                        if(mysqli_num_rows($sql_paso) != 0) {
+                                            $row = mysqli_fetch_assoc($sql_paso);
                                         } else {
                                             echo '<script>alert("Consulta Erronea");</script>';
                                         }
+                                ?>
+                                    <option value="<?php echo $s; ?>"><?php
+                                                            echo $row['descripcion']    
+                                                        ?>
+                                    </option>
+                                <?php    
+                                        $s++;
+                                    }
+                                ?>
 
-                                        $n_paso = (int)$row['COUNT(*)'];
-                                        $s = 0;
+                            </select>
+                        </div>
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-5">
+                            <label><font size=5 color="#4b3621">¿No esta su paso?</font></label> <br>
+                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal3">Agregar</button>          
+                        </div>
+                    </div>
 
-                                        while($s < $n_paso) {
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <font size=5 color="#4b3621">¿Qué utensilios vas a utilizar?</font>
+                            <select name="select-uten-n" id="select-uten-<?php echo $i; ?>" class="form-control">
+                                <option value="null" selected>Seleccione lo que va utilizar</option>
+                                <?php   
+                                    include("conexion.php");
+
+                                    $sql_count_ob = mysqli_query($con, 'SELECT COUNT(*) FROM `utensilio`'); 
+
+                                    if(mysqli_num_rows($sql_count_ob) != 0) {
+                                        $row = mysqli_fetch_assoc($sql_count_ob);
+                                    } else {
+                                        echo '<script>alert("Consulta Erronea");</script>';
+                                    }
+
+                                    $n_ob = (int)$row['COUNT(*)'];
+                                    $n = 0;
+
+                                    while($n < $n_ob) {
                                             
-                                            $sql_paso = mysqli_query($con, "SELECT * FROM `paso` WHERE `id_paso` = '$s'");
+                                        $sql_ob = mysqli_query($con, "SELECT * FROM `utensilio` WHERE `id_utensilio` = '$n'");
 
-                                            if(mysqli_num_rows($sql_paso) != 0) {
-                                                $row = mysqli_fetch_assoc($sql_paso);
-                                            } else {
-                                                echo '<script>alert("Consulta Erronea");</script>';
-                                            }
-                                    ?>
-                                        <option value="<?php echo $s; ?>"><?php
-                                                                echo $row['descripcion']    
-                                                            ?>
-                                        </option>
-                                    <?php    
-                                            $s++;
-                                        }
-
-                                        $pasos_array[$i] = $_POST['select-paso-n'];
-                                    ?>
-
-                                </select> <br>
-
-                                <label><font size=5 color="#4b3621">¿No esta su paso?</font></label> <br>
-                                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal3">Agregar</button>
-
-                            </div>
-                            <div class="col-sm-4">
-                                <font size=5 color="#4b3621">¿Qué utensilios vas a utilizar?</font>
-                                <select name="select-uten-n" id="select-uten-<?php echo $i; ?>" class="form-control">
-                                    <option value="null" selected>Seleccione lo que va utilizar</option>
-                                    <?php   
-                                        include("conexion.php");
-
-                                        $sql_count_ob = mysqli_query($con, 'SELECT COUNT(*) FROM `utensilio`'); 
-
-                                        if(mysqli_num_rows($sql_count_ob) != 0) {
-                                            $row = mysqli_fetch_assoc($sql_count_ob);
+                                        if(mysqli_num_rows($sql_ob) != 0) {
+                                            $row = mysqli_fetch_assoc($sql_ob);
                                         } else {
                                             echo '<script>alert("Consulta Erronea");</script>';
                                         }
+                                ?>
+                                    <option value="<?php echo $n; ?>"><?php
+                                                        echo $row['nombre']    
+                                                    ?>
+                                    </option>
+                                <?php    
+                                        $n++;
+                                    }
+                                ?>
 
-                                        $n_ob = (int)$row['COUNT(*)'];
-                                        $n = 0;
+                            </select> <br>
+                        </div>
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-5">
+                            <br><label><font size=5 color="#4b3621">¿No esta su utensilio?</font></label> <br>
+                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal4">Agregar</button>      
+                        </div>
+                    </div>
 
-                                        while($n < $n_ob) {
-                                            
-                                            $sql_ob = mysqli_query($con, "SELECT * FROM `utensilio` WHERE `id_utensilio` = '$n'");
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <font size=5 color="#4b3621">¿Qué ingredientes vas a usar?</font>
+                            <select id="select-ing-<?php echo $i; ?>" name="select-ing-n" class="form-control">
+                                <option value="null" selected>Seleccione los ingredientes que va utilizar</option>
+                                <?php   
+                                    include("conexion.php");
 
-                                            if(mysqli_num_rows($sql_ob) != 0) {
-                                                $row = mysqli_fetch_assoc($sql_ob);
-                                            } else {
-                                                echo '<script>alert("Consulta Erronea");</script>';
-                                            }
-                                    ?>
-                                        <option value="<?php echo $n; ?>"><?php
-                                                                echo $row['nombre']    
-                                                            ?>
-                                        </option>
-                                    <?php    
-                                            $n++;
-                                        }
+                                    $sql_count_in = mysqli_query($con, 'SELECT COUNT(*) FROM `ingredientes`'); 
 
-                                        $uten_array[$i] = $_POST['select-uten-n'];
-                                    ?>
+                                    if(mysqli_num_rows($sql_count_in) != 0) {
+                                        $row = mysqli_fetch_assoc($sql_count_in);
+                                    } else {
+                                        echo '<script>alert("Consulta Erronea");</script>';
+                                    }
 
-                                </select> <br>
+                                    $n_in = (int)$row['COUNT(*)'];
+                                    $m = 0;
 
-                                <label><font size=5 color="#4b3621">¿No esta su utensilio?</font></label> <br>
-                                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal4">Agregar</button>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="row">
-                                    <div class="col-sm-9">
-                                        <font size=5 color="#4b3621">¿Qué ingredientes vas a usar?</font>
-                                        <select id="select-ing-<?php echo $i; ?>" name="select-ing-n" class="form-control">
-                                            <option value="null" selected>Seleccione los ingredientes que va utilizar</option>
-                                            <?php   
-                                                include("conexion.php");
-
-                                                $sql_count_in = mysqli_query($con, 'SELECT COUNT(*) FROM `ingredientes`'); 
-
-                                                if(mysqli_num_rows($sql_count_in) != 0) {
-                                                    $row = mysqli_fetch_assoc($sql_count_in);
-                                                } else {
-                                                    echo '<script>alert("Consulta Erronea");</script>';
-                                                }
-
-                                                $n_in = (int)$row['COUNT(*)'];
-                                                $m = 0;
-
-                                                while($m < $n_in) {
+                                    while($m < $n_in) {
                                                     
-                                                    $sql_in = mysqli_query($con, "SELECT * FROM `ingredientes` WHERE `id_ingredientes` = '$m'");
+                                    $sql_in = mysqli_query($con, "SELECT * FROM `ingredientes` WHERE `id_ingredientes` = '$m'");
 
-                                                    if(mysqli_num_rows($sql_in) != 0) {
-                                                        $row = mysqli_fetch_assoc($sql_in);
-                                                    } else {
-                                                        echo '<script>alert("Consulta Erronea");</script>';
-                                                    }
-                                            ?>
-                                                <option value="select-paso-<?php echo $m; ?>"><?php
-                                                                        echo $row['ingrediente']    
-                                                                    ?>
-                                                </option>
-                                            <?php    
-                                                    $m++;
-                                                }
+                                    if(mysqli_num_rows($sql_in) != 0) {
+                                        $row = mysqli_fetch_assoc($sql_in);
+                                    } else {
+                                        echo '<script>alert("Consulta Erronea");</script>';
+                                    }
+                                ?>
+                                    <option value="select-paso-<?php echo $m; ?>"><?php
+                                                            echo $row['ingrediente']    
+                                                        ?>
+                                    </option>
+                                <?php    
+                                        $m++;
+                                    }
+                                ?>
 
-                                                $ing_array[$i] = $_POST['select-ing-n'];
-                                            ?>
-
-                                        </select> <br>
-
-                                        <label><font size=5 color="#4b3621">No esta su ingrediente?</font></label> <br>
-                                        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal2">Agregar</button>
-                                    </div>
-                                    <div class="col-sm-3"><br><br>
-                                        <font size=3 color="#4b3621">¿Cuántas veces lo utilizará?</font> <br><br>
-                                        <input type="number" class="form-control" name="n-ingred-n" id="n-ingred-<?php echo $i; ?>">
-
-                                        <?php
-                                            $ing_n_array[$i] = $_POST['n-ingred-n'];
-                                        ?>
-                                    </div>
+                            </select> <br>                                        
+                        </div>
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-5">
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <label><font size=5 color="#4b3621">No esta su ingrediente?</font></label> <br>
+                                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal2">Agregar</button>
+                                </div>
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-5">
+                                    <font size=3 color="#4b3621">¿Cuántas veces lo utilizará?</font> <br>
+                                    <input type="number" class="form-control" name="n-ingred-n">
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div> <br>
-            <?php
-                    $i++;
-                }
-            ?>
+                </div>
+            </div>
 
             <!--<div class="suggest">
                 <label for="foto"><font size=5 color="#4b3621">Imagen del Platillo</font></label> <br>
@@ -361,38 +413,6 @@
     </center>
 
     <!-- Generar consulta -->
-    <?php 
-        $nom_receta = "";
-        $nom_receta = $_POST['titulo-platillo'];
-
-        $desc_receta = "";
-        $desc_receta = $_POST['desc-platillo'];
-
-        $ing_prinipal = "";
-        $ing_prinipal = $_POST['ing-prin'];
-
-        $ver = $_POST['n-ingred-n'];
-
-        $sql_count = mysqli_query($con, 'SELECT DISTINCT(id_receta) FROM `receta` WHERE 1');
-
-        if(mysqli_num_rows($sql_count) != 0) {
-            $row = mysqli_fetch_assoc($sql_count);
-        } else {
-            echo "consulta erronea";
-        }
-
-        $id = (int)$row['id_receta'];
-        $id = $id + 1;
-        $n = 1;
-
-        echo $id.$nom_receta.$pasos_array[$n].$uten_array[$n].$ing_array[$n].$ing_n_array[$n];
-        echo $pasos_array[1];
-
-        /*while ($n <= $n_pasos) {
-            $sql_add_receta = mysqli_query($con, "INSERT INTO `receta` (`id_receta`, `nombre_receta`, `id_paso`, `id_utensilio`, `id_ingredientes`, `cantidad_ingredientes`, `contador`) VALUES ('$id', '$nom_receta', '$pasos_array[$n]', '$uten_array[$n]', '$ing_array[$n]', ''$ing_n_array[$n]'', NULL)");
-            $n++;
-        }*/
-    ?>
 
     <!-- Modal (check) -->
     <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -128,7 +128,7 @@
                     <div class="card border-primary mb-3 ml-2 mr-1">
                         <div class="card-header">
                             <?php 
-                                $sql = mysqli_query($con, 'SELECT `nombre_receta` FROM `receta` WHERE contador = 5');
+                                $sql = mysqli_query($con, 'SELECT id_platillo FROM `platillo` WHERE `tipo_presentacion` = 1');
 
                                 if(mysqli_num_rows($sql) != 0) {
                                     $row = mysqli_fetch_assoc($sql);
