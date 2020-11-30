@@ -174,10 +174,10 @@
                     <table class="table table-hover ml-5">
                         <thead>
                             <tr class="table-dark">
-                                <th scope="col">paso</th>
-                                <th scope="col">utensilio</th>
-                                <th scope="col">ingredientes</th>
-                                <th scope="col">n_ingredientes</th>
+                                <th scope="col">Paso</th>
+                                <th scope="col">Utensilio</th>
+                                <th scope="col">Ingredientes</th>
+                                <th scope="col">Num_Ingredientes</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -229,11 +229,13 @@
                                     $id_utensilio = (int)$row['id_utensilio'];
                                     $id_ingredientes = (int)$row['id_ingredientes'];
                                     $cantidad_ingredientes = (int)$row['cantidad_ingredientes'];
+
+                                    include("ver-pasos.php");
                             ?>
                                 <tr class="table-secondary">
-                                    <th scope="row"><?php echo $id_paso; ?></th>
-                                    <td><?php echo $id_utensilio; ?></td>
-                                    <td><?php echo $id_ingredientes; ?></td>
+                                    <th scope="row"><?php echo $name_paso; ?></th>
+                                    <td><?php echo $name_uten; ?></td>
+                                    <td><?php echo $name_ing; ?></td>
                                     <td><?php echo $cantidad_ingredientes; ?></td>
                                 </tr>
                             <?php    
