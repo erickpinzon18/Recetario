@@ -123,7 +123,7 @@
 
                 <div class="col-sm-4"> <br>
                     <label><font size=5 color="#4b3621">Ingrediente Principal</font></label> <br>
-                    <select name="" id="" class="form-control">
+                    <select name="ing-prin" class="form-control">
                         <option value="" selected>Seleccione un ingrediente Principal</option>
                         <?php   
                             include("conexion.php");
@@ -191,8 +191,8 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <font size=5 color="#4b3621">¿Qué vas a hacer?</font> <br>
-                                <select name="" id="" class="form-control">
-                                    <option value="" selected>Seleccione lo que va hacer</option>
+                                <select name="select-paso-<?php echo $i; ?>" id="" class="form-control">
+                                    <option value="null" selected>Seleccione lo que va hacer</option>
                                     <?php   
                                         include("conexion.php");
 
@@ -217,7 +217,7 @@
                                                 echo '<script>alert("Consulta Erronea");</script>';
                                             }
                                     ?>
-                                        <option value=""><?php
+                                        <option value="<?php echo $s; ?>"><?php
                                                                 echo $row['descripcion']    
                                                             ?>
                                         </option>
@@ -234,7 +234,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <font size=5 color="#4b3621">¿Qué utensilios vas a utilizar?</font>
-                                <select name="" id="" class="form-control">
+                                <select name="select-uten-<?php echo $i; ?>" class="form-control">
                                     <option value="" selected>Seleccione lo que va utilizar</option>
                                     <?php   
                                         include("conexion.php");
@@ -260,7 +260,7 @@
                                                 echo '<script>alert("Consulta Erronea");</script>';
                                             }
                                     ?>
-                                        <option value=""><?php
+                                        <option value="<?php echo $n; ?>"><?php
                                                                 echo $row['nombre']    
                                                             ?>
                                         </option>
@@ -278,7 +278,7 @@
                                 <div class="row">
                                     <div class="col-sm-9">
                                         <font size=5 color="#4b3621">¿Qué ingredientes vas a usar?</font>
-                                        <select name="" id="" class="form-control">
+                                        <select name="select-ing-<?php echo $i; ?>" class="form-control">
                                             <option value="" selected>Seleccione los ingredientes que va utilizar</option>
                                             <?php   
                                                 include("conexion.php");
@@ -304,7 +304,7 @@
                                                         echo '<script>alert("Consulta Erronea");</script>';
                                                     }
                                             ?>
-                                                <option value=""><?php
+                                                <option value="select-paso-<?php echo $m; ?>"><?php
                                                                         echo $row['ingrediente']    
                                                                     ?>
                                                 </option>
@@ -320,7 +320,7 @@
                                     </div>
                                     <div class="col-sm-3"><br><br>
                                         <font size=3 color="#4b3621">¿Cuántas veces lo utilizará?</font> <br><br>
-                                        <input type="number" class="form-control" id="n-ingred" name="n-ingred">
+                                        <input type="number" class="form-control" id="n-ingred" name="n-ingred-<?php echo $i; ?>">
                                     </div>
                                 </div>
                             </div>
@@ -331,8 +331,6 @@
                     $i++;
                 }
             ?>
-
-            
 
             <!--<div class="suggest">
                 <label for="foto"><font size=5 color="#4b3621">Imagen del Platillo</font></label> <br>
@@ -347,6 +345,27 @@
             <input type="submit" class="btn btn-outline-success" value="Enviar" style="display:none;" id="btn-send"></input>
         </form>
     </center>
+
+    <!-- Generar consulta -->
+    <?php 
+        $nom_receta = "";
+        $nom_receta = $_POST['titulo-platillo'];
+
+        $desc_receta = "";
+        $desc_receta = $_POST['desc-platillo'];
+
+        $ing_prinipal = "";
+        $ing_prinipal = $_POST['ing-prin'];
+            
+        $i = 1;
+        while ($i <= $n_pasos) {
+            $paso = "";
+            $sp = "select-paso-".$i;
+            echo $sp;
+            
+            $i++;
+        }
+    ?>
 
     <!-- Modal (check) -->
     <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
