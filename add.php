@@ -1,5 +1,9 @@
 <?php 
     include("conexion.php");
+    $pasos_array = array();
+    $uten_array = array();
+    $ing_array = array();
+    $ing_n_array = array();
 ?>
 
 <!doctype html>
@@ -191,7 +195,7 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <font size=5 color="#4b3621">¿Qué vas a hacer?</font> <br>
-                                <select name="select-paso-<?php echo $i; ?>" id="" class="form-control">
+                                <select name="select-paso-n" id="select-paso-<?php echo $i; ?>" class="form-control">
                                     <option value="null" selected>Seleccione lo que va hacer</option>
                                     <?php   
                                         include("conexion.php");
@@ -224,6 +228,8 @@
                                     <?php    
                                             $s++;
                                         }
+
+                                        $pasos_array[$i] = $_POST['select-paso-n'];
                                     ?>
 
                                 </select> <br>
@@ -234,8 +240,8 @@
                             </div>
                             <div class="col-sm-4">
                                 <font size=5 color="#4b3621">¿Qué utensilios vas a utilizar?</font>
-                                <select name="select-uten-<?php echo $i; ?>" class="form-control">
-                                    <option value="" selected>Seleccione lo que va utilizar</option>
+                                <select name="select-uten-n" id="select-uten-<?php echo $i; ?>" class="form-control">
+                                    <option value="null" selected>Seleccione lo que va utilizar</option>
                                     <?php   
                                         include("conexion.php");
 
@@ -267,6 +273,8 @@
                                     <?php    
                                             $n++;
                                         }
+
+                                        $uten_array[$i] = $_POST['select-uten-n'];
                                     ?>
 
                                 </select> <br>
@@ -278,8 +286,8 @@
                                 <div class="row">
                                     <div class="col-sm-9">
                                         <font size=5 color="#4b3621">¿Qué ingredientes vas a usar?</font>
-                                        <select name="select-ing-<?php echo $i; ?>" class="form-control">
-                                            <option value="" selected>Seleccione los ingredientes que va utilizar</option>
+                                        <select id="select-ing-<?php echo $i; ?>" name="select-ing-n" class="form-control">
+                                            <option value="null" selected>Seleccione los ingredientes que va utilizar</option>
                                             <?php   
                                                 include("conexion.php");
 
@@ -311,6 +319,8 @@
                                             <?php    
                                                     $m++;
                                                 }
+
+                                                $ing_array[$i] = $_POST['select-ing-n'];
                                             ?>
 
                                         </select> <br>
@@ -320,7 +330,11 @@
                                     </div>
                                     <div class="col-sm-3"><br><br>
                                         <font size=3 color="#4b3621">¿Cuántas veces lo utilizará?</font> <br><br>
-                                        <input type="number" class="form-control" id="n-ingred" name="n-ingred-<?php echo $i; ?>">
+                                        <input type="number" class="form-control" name="n-ingred-n" id="n-ingred-<?php echo $i; ?>">
+
+                                        <?php
+                                            $ing_n_array[$i] = $_POST['n-ingred-n'];
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -356,15 +370,28 @@
 
         $ing_prinipal = "";
         $ing_prinipal = $_POST['ing-prin'];
-            
-        $i = 1;
-        while ($i <= $n_pasos) {
-            $paso = "";
-            $sp = "select-paso-".$i;
-            echo $sp;
-            
-            $i++;
+
+        $ver = $_POST['n-ingred-n'];
+
+        $sql_count = mysqli_query($con, 'SELECT DISTINCT(id_receta) FROM `receta` WHERE 1');
+
+        if(mysqli_num_rows($sql_count) != 0) {
+            $row = mysqli_fetch_assoc($sql_count);
+        } else {
+            echo "consulta erronea";
         }
+
+        $id = (int)$row['id_receta'];
+        $id = $id + 1;
+        $n = 1;
+
+        echo $id.$nom_receta.$pasos_array[$n].$uten_array[$n].$ing_array[$n].$ing_n_array[$n];
+        echo $pasos_array[1];
+
+        /*while ($n <= $n_pasos) {
+            $sql_add_receta = mysqli_query($con, "INSERT INTO `receta` (`id_receta`, `nombre_receta`, `id_paso`, `id_utensilio`, `id_ingredientes`, `cantidad_ingredientes`, `contador`) VALUES ('$id', '$nom_receta', '$pasos_array[$n]', '$uten_array[$n]', '$ing_array[$n]', ''$ing_n_array[$n]'', NULL)");
+            $n++;
+        }*/
     ?>
 
     <!-- Modal (check) -->
