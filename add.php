@@ -124,7 +124,16 @@
                 <div class="col-sm-1"></div>
                 <div class="col-sm-4"> <br>
                     <label><font size=5 color="#4b3621">Nombre del Platillo</font></label>
-                    <input type="text" class="form-control" name="titulo-platillo" id="tit-plat"> <br>
+                
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="titulo-platillo" id="tit-plat" > <br>
+                        </div>
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-3">
+                            <input type="submit" class="btn btn-outline-success" value="Buscar"></input>
+                        </div>
+                    </div>
 
                     <label><font size=5 color="#4b3621">Descripcion del Platillo</font></label>
                     <textarea class="form-control" name="desc-platillo" rows="3" id="desc-plat"></textarea>
@@ -143,9 +152,7 @@
 
                             if(mysqli_num_rows($sql_count_ing) != 0) {
                                 $row = mysqli_fetch_assoc($sql_count_ing);
-                            } else {
-                                echo '<script>alert("Consulta Erronea");</script>';
-                            }
+                            } 
 
                             $n_ing = (int)$row['COUNT(*)'];
                             $i = 0;
@@ -156,8 +163,6 @@
 
                                 if(mysqli_num_rows($sql_ing) != 0) {
                                     $row = mysqli_fetch_assoc($sql_ing);
-                                } else {
-                                    echo '<script>alert("Consulta Erronea");</script>';
                                 }
                         ?>
                             <option value="<?php echo $i; ?>"><?php
@@ -201,9 +206,7 @@
 
                                 if(mysqli_num_rows($sql_count_receta) != 0) {
                                     $row = mysqli_fetch_assoc($sql_count_receta);
-                                } else {
-                                    echo '<script>alert("Consulta Erronea");</script>';
-                                }
+                                } 
 
                                 $n_receta = (int)$row['id_receta'];
 
@@ -211,8 +214,6 @@
 
                                 if(mysqli_num_rows($sql_count_paso_receta) != 0) {
                                     $row = mysqli_fetch_assoc($sql_count_paso_receta);
-                                } else {
-                                    echo '<script>alert("Consulta Erronea");</script>';
                                 }
 
                                 $n_paso_receta = (int)$row['COUNT(*)'];
@@ -221,9 +222,7 @@
 
                                 if(mysqli_num_rows($sql_contador_receta) != 0) {
                                     $row = mysqli_fetch_assoc($sql_contador_receta);
-                                } else {
-                                    echo '<script>alert("Consulta Erronea");</script>';
-                                }
+                                } 
                                 
                                 $s = (int)$row['MIN(`contador`)'];
                                 $o = 1;
@@ -233,9 +232,8 @@
 
                                     if(mysqli_num_rows($sql_receta_paso) != 0) {
                                         $row = mysqli_fetch_assoc($sql_receta_paso);
-                                    } else {
-                                        echo '<script>alert("Consulta final");</script>';
-                                    }
+                                    } 
+
                                     $id_paso = (int)$row['id_paso'];
                                     $id_utensilio = (int)$row['id_utensilio'];
                                     $id_ingredientes = (int)$row['id_ingredientes'];
@@ -272,8 +270,6 @@
 
                                     if(mysqli_num_rows($sql_count_paso) != 0) {
                                         $row = mysqli_fetch_assoc($sql_count_paso);
-                                    } else {
-                                        echo '<script>alert("Consulta Erronea");</script>';
                                     }
 
                                     $n_paso = (int)$row['COUNT(*)'];
@@ -284,8 +280,6 @@
 
                                         if(mysqli_num_rows($sql_paso) != 0) {
                                             $row = mysqli_fetch_assoc($sql_paso);
-                                        } else {
-                                            echo '<script>alert("Consulta Erronea");</script>';
                                         }
                                 ?>
                                     <option value="<?php echo $s; ?>"><?php
@@ -318,9 +312,7 @@
 
                                     if(mysqli_num_rows($sql_count_ob) != 0) {
                                         $row = mysqli_fetch_assoc($sql_count_ob);
-                                    } else {
-                                        echo '<script>alert("Consulta Erronea");</script>';
-                                    }
+                                    } 
 
                                     $n_ob = (int)$row['COUNT(*)'];
                                     $n = 0;
@@ -331,8 +323,6 @@
 
                                         if(mysqli_num_rows($sql_ob) != 0) {
                                             $row = mysqli_fetch_assoc($sql_ob);
-                                        } else {
-                                            echo '<script>alert("Consulta Erronea");</script>';
                                         }
                                 ?>
                                     <option value="<?php echo $n; ?>"><?php
@@ -365,9 +355,7 @@
 
                                     if(mysqli_num_rows($sql_count_in) != 0) {
                                         $row = mysqli_fetch_assoc($sql_count_in);
-                                    } else {
-                                        echo '<script>alert("Consulta Erronea");</script>';
-                                    }
+                                    } 
 
                                     $n_in = (int)$row['COUNT(*)'];
                                     $m = 0;
@@ -378,9 +366,7 @@
 
                                     if(mysqli_num_rows($sql_in) != 0) {
                                         $row = mysqli_fetch_assoc($sql_in);
-                                    } else {
-                                        echo '<script>alert("Consulta Erronea");</script>';
-                                    }
+                                    } 
                                 ?>
                                     <option value="<?php echo $m; ?>"><?php
                                                             echo $row['ingrediente']    
@@ -458,9 +444,7 @@
 
                         if(mysqli_num_rows($sql_verif_ing_prin) != 0) {
                             $row = mysqli_fetch_assoc($sql_verif_ing_prin);
-                        } else {
-                            echo '<script>alert("Consulta verif ing prin modal");</script>';
-                        }
+                        } 
 
                         $name_ing_prin = $row['ingrediente'];
                     ?>
@@ -487,8 +471,6 @@
 
                             if(mysqli_num_rows($sql_verif_paso) != 0) {
                                 $row = mysqli_fetch_assoc($sql_verif_paso);
-                            } else {
-                                echo '<script>alert("Consulta final");</script>';
                             }
                         
                             $name_paso = $row['descripcion'];
@@ -497,8 +479,6 @@
                         
                             if(mysqli_num_rows($sql_verif_uten) != 0) {
                                 $row = mysqli_fetch_assoc($sql_verif_uten);
-                            } else {
-                                echo '<script>alert("Consulta final");</script>';
                             }
                         
                             $name_uten = $row['nombre'];
@@ -507,9 +487,7 @@
                         
                             if(mysqli_num_rows($sql_verif_ing) != 0) {
                                 $row = mysqli_fetch_assoc($sql_verif_ing);
-                            } else {
-                                echo '<script>alert("Consulta final");</script>';
-                            }
+                            } 
                         
                             $name_ing = $row['ingrediente'];
                         ?>

@@ -5,11 +5,12 @@
 
     if(mysqli_num_rows($sql_count) != 0) {
         $row = mysqli_fetch_assoc($sql_count);
-    } else {
-        echo "consulta erronea";
     }
 
     $id = (int)$row['id_receta'];
+    
+    $sql_search = mysqli_query($con, '');
+
     $id = $id + 1;
 
     $titulo = $_POST['fin-nom'];

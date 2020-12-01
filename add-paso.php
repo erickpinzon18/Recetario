@@ -5,9 +5,7 @@
 
     if(mysqli_num_rows($sql_count) != 0) {
         $row = mysqli_fetch_assoc($sql_count);
-    } else {
-        echo "consulta erronea";
-    }
+    } 
 
     $id = (int)$row['COUNT(*)'];
 
