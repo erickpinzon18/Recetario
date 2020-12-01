@@ -19,6 +19,17 @@
         function click() {
             document.getElementById("btn-pasos").click();
         }
+
+        function end() {
+            document.getElementById("fin-nom").value = document.getElementById("tit-plat").value;
+            document.getElementById("fin-desc").value = document.getElementById("desc-plat").value;
+            document.getElementById("fin-ing-prin").value = document.getElementById("ing-prin").value;
+            document.getElementById("fin-paso").value = document.getElementById("paso-plat").value;
+            document.getElementById("fin-uten").value = document.getElementById("uten-plat").value;
+            document.getElementById("fin-ing").value = document.getElementById("ing-plat").value;
+            document.getElementById("fin-ing-n").value = document.getElementById("ing-n-plat").value;
+            document.getElementById("btn-send-receta").click();
+        }
     </script>
 
     <!-- Style Personal -->
@@ -113,17 +124,17 @@
                 <div class="col-sm-1"></div>
                 <div class="col-sm-4"> <br>
                     <label><font size=5 color="#4b3621">Nombre del Platillo</font></label>
-                    <input type="text" class="form-control" name="titulo-platillo"> <br>
+                    <input type="text" class="form-control" name="titulo-platillo" id="tit-plat"> <br>
 
                     <label><font size=5 color="#4b3621">Descripcion del Platillo</font></label>
-                    <textarea class="form-control" name="desc-platillo" rows="3"></textarea>
+                    <textarea class="form-control" name="desc-platillo" rows="3" id="desc-plat"></textarea>
 
                 </div>
                 <div class="col-sm-2"></div>
 
                 <div class="col-sm-4"> <br>
                     <label><font size=5 color="#4b3621">Ingrediente Principal</font></label> <br>
-                    <select name="ing-prin" class="form-control">
+                    <select name="ing-prin" class="form-control" id="ing-prin">
                         <option value="" selected>Seleccione un ingrediente Principal</option>
                         <?php   
                             include("conexion.php");
@@ -149,7 +160,7 @@
                                     echo '<script>alert("Consulta Erronea");</script>';
                                 }
                         ?>
-                            <option value=""><?php
+                            <option value="<?php echo $i; ?>"><?php
                                                     echo $row['ingrediente']    
                                                 ?>
                             </option>
@@ -170,7 +181,7 @@
             <font size=6 color="#4b3621">Pasos</font> <br><br>
 
             <div class="row">
-                <div class="col-sm-5">
+                <div class="col-sm-5"> <br><br><br>
                     <table class="table table-hover ml-5">
                         <thead>
                             <tr class="table-dark">
@@ -231,7 +242,7 @@
                                     $cantidad_ingredientes = (int)$row['cantidad_ingredientes'];
 
                                     include("ver-pasos.php");
-                            ?>
+                            ?> 
                                 <tr class="table-secondary">
                                     <th scope="row"><?php echo $name_paso; ?></th>
                                     <td><?php echo $name_uten; ?></td>
@@ -252,7 +263,7 @@
                     <div class="row">
                         <div class="col-sm-5">
                             <font size=5 color="#4b3621">¿Qué vas a hacer?</font> <br>
-                            <select class="form-control">
+                            <select class="form-control" name="add-paso" id="paso-plat">
                                 <option value="null" selected>Seleccione lo que va hacer</option>
                                 <?php   
                                     include("conexion.php");
@@ -298,7 +309,7 @@
                     <div class="row">
                         <div class="col-sm-5">
                             <font size=5 color="#4b3621">¿Qué utensilios vas a utilizar?</font>
-                            <select name="select-uten-n" id="select-uten-<?php echo $i; ?>" class="form-control">
+                            <select name="add-uten" id="uten-plat" class="form-control">
                                 <option value="null" selected>Seleccione lo que va utilizar</option>
                                 <?php   
                                     include("conexion.php");
@@ -345,7 +356,7 @@
                     <div class="row">
                         <div class="col-sm-5">
                             <font size=5 color="#4b3621">¿Qué ingredientes vas a usar?</font>
-                            <select id="select-ing-<?php echo $i; ?>" name="select-ing-n" class="form-control">
+                            <select id="ing-plat" name="add-ing" class="form-control">
                                 <option value="null" selected>Seleccione los ingredientes que va utilizar</option>
                                 <?php   
                                     include("conexion.php");
@@ -371,7 +382,7 @@
                                         echo '<script>alert("Consulta Erronea");</script>';
                                     }
                                 ?>
-                                    <option value="select-paso-<?php echo $m; ?>"><?php
+                                    <option value="<?php echo $m; ?>"><?php
                                                             echo $row['ingrediente']    
                                                         ?>
                                     </option>
@@ -392,7 +403,7 @@
                                 <div class="col-sm-2"></div>
                                 <div class="col-sm-5">
                                     <font size=3 color="#4b3621">¿Cuántas veces lo utilizará?</font> <br>
-                                    <input type="number" class="form-control" name="n-ingred-n">
+                                    <input type="number" class="form-control" name="add-ing-n" id="ing-n-plat">
                                 </div>
                             </div>
                         </div>
@@ -410,7 +421,18 @@
             <hr color="white">
 
             <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal1" id="btn-verif">Verificar</button>
-            <input type="submit" class="btn btn-outline-success" value="Enviar" style="display:none;" id="btn-send"></input>
+            <input type="button" class="btn btn-outline-success" value="Enviar" style="display:none;" id="btn-send" onclick="end()"> <br>
+        </form>
+
+        <form action="add-receta.php" method="POST">
+            <input type="text" style="display:inline;" id="fin-nom" name="fin-nom">
+            <input type="text" style="display:inline;" id="fin-desc" name="fin-desc">
+            <input type="text" style="display:inline;" id="fin-ing-prin" name="fin-ing-prin">
+            <input type="number" style="display:inline;" id="fin-paso" name="fin-paso">
+            <input type="number" style="display:inline;" id="fin-uten" name="fin-uten">
+            <input type="number" style="display:inline;" id="fin-ing" name="fin-ing">
+            <input type="number" style="display:inline;" id="fin-ing-n" name="fin-ing-n">
+            <input type="submit" style="display:inline;" id="btn-send-receta"> <br>                     
         </form>
     </center>
 
@@ -427,6 +449,80 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <font size=5 color="#4b3621">Nombre de la receta: <?php echo $nom_receta; ?></font> <br>
+                    <font size=5 color="#4b3621">Descripion de la receta: <?php $desc_receta = $_POST['desc-platillo']; echo $desc_receta; ?></font> <br>
+                    <?php
+                        $ing_pincipal = $_POST['ing-prin'];
+                        
+                        $sql_verif_ing_prin = mysqli_query($con, "SELECT `ingrediente` FROM `ingredientes` WHERE id_ingredientes = $ing_pincipal");
+
+                        if(mysqli_num_rows($sql_verif_ing_prin) != 0) {
+                            $row = mysqli_fetch_assoc($sql_verif_ing_prin);
+                        } else {
+                            echo '<script>alert("Consulta verif ing prin modal");</script>';
+                        }
+
+                        $name_ing_prin = $row['ingrediente'];
+                    ?>
+                    <font size=5 color="#4b3621">Ingrediente Prinipal: <?php echo $name_ing_prin; ?></font> <br>
+                    <hr color="blue"> <br>
+                    <font size=5 color="#4b3621">Agrega:</font> <br><br>
+
+                    <table class="table table-hover ml-1">
+                        <thead>
+                            <tr class="table-dark">
+                                <th scope="col">Paso</th>
+                                <th scope="col">Utensilio</th>
+                                <th scope="col">Ingredientes</th>
+                                <th scope="col">Num_Ingredientes</th>
+                            </tr>
+                        </thead>
+
+                        <?php
+                            $paso_verif_modal = $_POST['add-paso'];
+                            $uten_verif_modal = $_POST['add-uten'];
+                            $ing_verif_modal = $_POST['add-ing'];
+                            
+                            $sql_verif_paso = mysqli_query($con, "SELECT `descripcion` FROM `paso` WHERE id_paso = $paso_verif_modal");
+
+                            if(mysqli_num_rows($sql_verif_paso) != 0) {
+                                $row = mysqli_fetch_assoc($sql_verif_paso);
+                            } else {
+                                echo '<script>alert("Consulta final");</script>';
+                            }
+                        
+                            $name_paso = $row['descripcion'];
+                        
+                            $sql_verif_uten = mysqli_query($con, "SELECT `nombre` FROM `utensilio` WHERE id_utensilio  = $uten_verif_modal");
+                        
+                            if(mysqli_num_rows($sql_verif_uten) != 0) {
+                                $row = mysqli_fetch_assoc($sql_verif_uten);
+                            } else {
+                                echo '<script>alert("Consulta final");</script>';
+                            }
+                        
+                            $name_uten = $row['nombre'];
+                        
+                            $sql_verif_ing = mysqli_query($con, "SELECT `ingrediente` FROM `ingredientes` WHERE id_ingredientes = $ing_verif_modal");
+                        
+                            if(mysqli_num_rows($sql_verif_ing) != 0) {
+                                $row = mysqli_fetch_assoc($sql_verif_ing);
+                            } else {
+                                echo '<script>alert("Consulta final");</script>';
+                            }
+                        
+                            $name_ing = $row['ingrediente'];
+                        ?>
+
+                        <tbody>
+                            <tr class="table-secondary">
+                                <th scope="row"><?php echo $name_paso; ?></th>
+                                <td><?php echo $name_uten; ?></td>
+                                <td><?php echo $name_ing; ?></td>
+                                <td><?php echo $_POST['add-ing-n']; ?></td>
+                            </tr>
+                        </tbody>
+                    </table>
 
                 </div>
                 <div class="modal-footer">
