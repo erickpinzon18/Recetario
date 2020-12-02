@@ -136,7 +136,7 @@
                     </div>
 
                     <label><font size=5 color="#4b3621">Descripcion del Platillo</font></label>
-                    <textarea class="form-control" name="desc-platillo" rows="3" id="desc-plat"></textarea>
+                    <textarea class="form-control" name="desc-platillo" rows="3" id="desc-plat" placeholder="No es necesario si solo se agregaran pasos, ni tampoco seleccionar ingrediente principal"></textarea>
 
                 </div>
                 <div class="col-sm-2"></div>
@@ -406,110 +406,20 @@
 
             <hr color="white">
 
-            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal1" id="btn-verif">Verificar</button>
-            <input type="button" class="btn btn-outline-success" value="Enviar" style="display:none;" id="btn-send" onclick="end()"> <br>
+            <input type="button" class="btn btn-outline-success" value="Enviar" id="btn-send" onclick="end()"> <br>
         </form>
 
         <form action="add-receta.php" method="POST">
-            <input type="text" style="display:inline;" id="fin-nom" name="fin-nom">
-            <input type="text" style="display:inline;" id="fin-desc" name="fin-desc">
-            <input type="text" style="display:inline;" id="fin-ing-prin" name="fin-ing-prin">
-            <input type="number" style="display:inline;" id="fin-paso" name="fin-paso">
-            <input type="number" style="display:inline;" id="fin-uten" name="fin-uten">
-            <input type="number" style="display:inline;" id="fin-ing" name="fin-ing">
-            <input type="number" style="display:inline;" id="fin-ing-n" name="fin-ing-n">
-            <input type="submit" style="display:inline;" id="btn-send-receta"> <br>                     
+            <input type="text" style="display:none;" id="fin-nom" name="fin-nom">
+            <input type="text" style="display:none;" id="fin-desc" name="fin-desc">
+            <input type="text" style="display:none;" id="fin-ing-prin" name="fin-ing-prin">
+            <input type="number" style="display:none;" id="fin-paso" name="fin-paso">
+            <input type="number" style="display:none;" id="fin-uten" name="fin-uten">
+            <input type="number" style="display:none;" id="fin-ing" name="fin-ing">
+            <input type="number" style="display:none;" id="fin-ing-n" name="fin-ing-n">
+            <input type="submit" style="display:none;" id="btn-send-receta"> <br>                     
         </form>
     </center>
-
-    <!-- Generar consulta -->
-
-    <!-- Modal (check) -->
-    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Deseas enviar esta receta?</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <font size=5 color="#4b3621">Nombre de la receta: <?php echo $nom_receta; ?></font> <br>
-                    <font size=5 color="#4b3621">Descripion de la receta: <?php $desc_receta = $_POST['desc-platillo']; echo $desc_receta; ?></font> <br>
-                    <?php
-                        $ing_pincipal = $_POST['ing-prin'];
-                        
-                        $sql_verif_ing_prin = mysqli_query($con, "SELECT `ingrediente` FROM `ingredientes` WHERE id_ingredientes = $ing_pincipal");
-
-                        if(mysqli_num_rows($sql_verif_ing_prin) != 0) {
-                            $row = mysqli_fetch_assoc($sql_verif_ing_prin);
-                        } 
-
-                        $name_ing_prin = $row['ingrediente'];
-                    ?>
-                    <font size=5 color="#4b3621">Ingrediente Prinipal: <?php echo $name_ing_prin; ?></font> <br>
-                    <hr color="blue"> <br>
-                    <font size=5 color="#4b3621">Agrega:</font> <br><br>
-
-                    <table class="table table-hover ml-1">
-                        <thead>
-                            <tr class="table-dark">
-                                <th scope="col">Paso</th>
-                                <th scope="col">Utensilio</th>
-                                <th scope="col">Ingredientes</th>
-                                <th scope="col">Num_Ingredientes</th>
-                            </tr>
-                        </thead>
-
-                        <?php
-                            $paso_verif_modal = $_POST['add-paso'];
-                            $uten_verif_modal = $_POST['add-uten'];
-                            $ing_verif_modal = $_POST['add-ing'];
-                            
-                            $sql_verif_paso = mysqli_query($con, "SELECT `descripcion` FROM `paso` WHERE id_paso = $paso_verif_modal");
-
-                            if(mysqli_num_rows($sql_verif_paso) != 0) {
-                                $row = mysqli_fetch_assoc($sql_verif_paso);
-                            }
-                        
-                            $name_paso = $row['descripcion'];
-                        
-                            $sql_verif_uten = mysqli_query($con, "SELECT `nombre` FROM `utensilio` WHERE id_utensilio  = $uten_verif_modal");
-                        
-                            if(mysqli_num_rows($sql_verif_uten) != 0) {
-                                $row = mysqli_fetch_assoc($sql_verif_uten);
-                            }
-                        
-                            $name_uten = $row['nombre'];
-                        
-                            $sql_verif_ing = mysqli_query($con, "SELECT `ingrediente` FROM `ingredientes` WHERE id_ingredientes = $ing_verif_modal");
-                        
-                            if(mysqli_num_rows($sql_verif_ing) != 0) {
-                                $row = mysqli_fetch_assoc($sql_verif_ing);
-                            } 
-                        
-                            $name_ing = $row['ingrediente'];
-                        ?>
-
-                        <tbody>
-                            <tr class="table-secondary">
-                                <th scope="row"><?php echo $name_paso; ?></th>
-                                <td><?php echo $name_uten; ?></td>
-                                <td><?php echo $name_ing; ?></td>
-                                <td><?php echo $_POST['add-ing-n']; ?></td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-info" data-dismiss="modal">Editar</button>
-                    <button type="button" class="btn btn-outline-success" data-dismiss="modal" onclick="ret()">Enviar</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Modal (add-ing) -->
     <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
