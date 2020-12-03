@@ -28,6 +28,8 @@
             document.getElementById("fin-uten").value = document.getElementById("uten-plat").value;
             document.getElementById("fin-ing").value = document.getElementById("ing-plat").value;
             document.getElementById("fin-ing-n").value = document.getElementById("ing-n-plat").value;
+            document.getElementById("fin-tipo").value = document.getElementById("tipo-comida").value;
+            document.getElementById("fin-fuentes").value = document.getElementById("fuentes").value;
             document.getElementById("btn-send-receta").click();
         }
     </script>
@@ -206,7 +208,9 @@
 
                                 if(mysqli_num_rows($sql_count_receta) != 0) {
                                     $row = mysqli_fetch_assoc($sql_count_receta);
-                                } 
+                                } else {
+                                    echo "<script>alert('No existe la receta');</script>";
+                                }
 
                                 $n_receta = (int)$row['id_receta'];
 
@@ -406,6 +410,24 @@
 
             <hr color="white">
 
+            <div class="row">
+                                    
+                <div class="col-sm-2"></div>
+                <div class="col-sm-4">
+                    <font size=5 color="#4b3621">¿Qué tipo de comida es?</font> <br>
+                    <select name="tipo-comida" id="tipo-comida" class="form-control">
+                        <option selected>Seleccione un tipo de comida</option>
+                        <option value="1">Desayuno</option>
+                        <option value="2">Comida</option>
+                        <option value="3">Cena</option>
+                    </select>                
+                </div>
+                <div class="col-sm-4">
+                    <font size=5 color="#4b3621">Fuentes</font> <br>
+                    <input type="text" class="form-control" name="fuentes" id="fuentes" placeholder="Example: Madre / Libros / Internet">
+                </div>
+            </div>
+            <br>
             <input type="button" class="btn btn-outline-success" value="Enviar" id="btn-send" onclick="end()"> <br>
         </form>
 
@@ -417,6 +439,8 @@
             <input type="number" style="display:none;" id="fin-uten" name="fin-uten">
             <input type="number" style="display:none;" id="fin-ing" name="fin-ing">
             <input type="number" style="display:none;" id="fin-ing-n" name="fin-ing-n">
+            <input type="number" style="display:none;" id="fin-tipo" name="fin-tipo">
+            <input type="text" style="display:none;" id="fin-fuentes" name="fin-fuentes">
             <input type="submit" style="display:none;" id="btn-send-receta"> <br>                     
         </form>
     </center>
