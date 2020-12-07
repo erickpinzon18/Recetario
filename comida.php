@@ -127,7 +127,7 @@
                                                         echo $fila ['comentarios'];
                                                         echo '
                                                             </p>
-                                                            <a href="view.php?nik='.$fila['contenido'].'"><p class="btn btn-primary">Ver Desayuno</p></a>
+                                                            <a href="view.php?nik='.$fila['contenido'].'"><p class="btn btn-primary">Ver Comida</p></a>
                                                             ';
                                                     ?>
                                             </div>
