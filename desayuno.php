@@ -112,7 +112,6 @@
 
                                         if ($resultado = $con->query($sql)) {
                                     
-                                            /* obtener un array asociativo */
                                             while ($fila = $resultado->fetch_assoc()) {
                                     ?>
                                         <div class="card border-primary mb-3 ml-2 mr-1">
@@ -134,9 +133,7 @@
                                             </div>
                                         </div>
                                     <?php
-                                            }
-                                        
-                                            /* liberar el conjunto de resultados */
+                                            }                                        
                                             $resultado->free();
                                         }
                                     ?>
