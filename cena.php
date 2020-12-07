@@ -146,7 +146,7 @@
            <div class="col-sm-4">
                 <div class="info-cena text-left text-white lead"> <br>
                     <div class="ml-3 mr-3">
-                        <h2 class="ml-2">La importancia de comer</h2>
+                        <h2 class="ml-2">La importancia de cenar</h2>
                         <hr size="80%" align="left" class="ml-2" color="white"> 
                         <p>
                             <font size="3">
