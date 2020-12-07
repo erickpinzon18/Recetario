@@ -24,7 +24,7 @@
     <nav class="navbar navbar-expand-lg nav-obs">
         <a class="navbar-brand" href="index.php">
             <img src="https://img.icons8.com/android/24/000000/fork.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-            <font size=5 color="black">RECETARIO</font>
+            <font size=5 color="white">RECETARIO</font>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>

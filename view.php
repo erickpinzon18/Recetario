@@ -113,6 +113,15 @@
                     ?>
                 </font>
             </h1>
+                <br>
+            <h3>
+                <font size=5 color="white"> 
+                    Fuente: 
+                    <?php
+                        echo $row ["fuente"];
+                    ?>
+                </font>
+            </h3>
         </center> <br><br><br>
     </div>
 
