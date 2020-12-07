@@ -1,5 +1,5 @@
 .bg-index {
-    background-image: url("https://images.unsplash.com/photo-1591189863345-9db058f9f8ec?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1072&q=80");
+    background-image: url(../src/bg-index.jpg);
     background-size: 100%;
     background-position: center top;
     background-attachment: fixed;
@@ -7,7 +7,7 @@
 }
 
 .bg-add {
-    background-image: url("https://images.unsplash.com/photo-1466637574441-749b8f19452f?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80");
+    background-image: url(../src/bg-add.jpg);
     background-size: 100%;
     background-position: center top;
     background-attachment: fixed;
@@ -15,7 +15,39 @@
 }
 
 .bg-view {
-    background-image: url("https://images.unsplash.com/photo-1564540586988-aa4e53c3d799?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80");
+    background-image: url(../src/bg-view.jpg);
+    background-size: 100%;
+    background-position: center top;
+    background-attachment: fixed;
+    font-family: Segoe UI;
+}
+
+.bg-desayuno {
+    background-image: url(../src/bg-desayuno.jpg);
+    background-size: 100%;
+    background-position: center top;
+    background-attachment: fixed;
+    font-family: Segoe UI;
+}
+
+.bg-comida {
+    background-image: url(../src/bg-comida.jpg);
+    background-size: 100%;
+    background-position: center top;
+    background-attachment: fixed;
+    font-family: Segoe UI;
+}
+
+.bg-cena {
+    background-image: url(../src/bg-cena.jpg);
+    background-size: 100%;
+    background-position: center top;
+    background-attachment: fixed;
+    font-family: Segoe UI;
+}
+
+.bg-contact {
+    background-image: url(../src/bg-contact.jpg);
     background-size: 100%;
     background-position: center top;
     background-attachment: fixed;
@@ -49,7 +81,40 @@
 .info {
     border-radius: 15px;
     background-color: rgba(123, 75, 66, 0.68);
+}
+
+.info-desayuno {
+    border-radius: 15px;
+    background-color: rgba(46, 43, 123, 0.68);
+}
+
+.info-comida {
+    border-radius: 15px;
+    background-color: rgba(50, 117, 47, 0.68);
+}
+
+.info-cena {
+    border-radius: 15px;
+    background-color: rgba(213, 203, 63, 0.68);
+}
+
+.info-contact {
+    border-radius: 15px;
+    background-color: rgba(97, 43, 164, 0.68);
+}
+
+.info-us {
+    border-radius: 15px;
+    background-color: rgba(46, 56, 123, 0.68);
+}
+
+.info-size {
     width: 70%;
+}
+
+.group {
+    border-radius: 15px;
+    background-color: rgba(230, 224, 39, 0.476);
 }
 
 .hide {

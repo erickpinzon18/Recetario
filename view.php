@@ -31,7 +31,7 @@
     <nav class="navbar navbar-expand-lg nav-obs">
         <a class="navbar-brand" href="index.php">
             <img src="https://img.icons8.com/android/24/000000/fork.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-            <font size=5 color="white">RECETARIO</font>
+            <font size=5 color="black">RECETARIO</font>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -41,7 +41,7 @@
             <ul class="navbar-nav mr-auto justify-content-center">
                 <li class="nav-item">
                     <a class="nav-link" href="index.php">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <font color="white" size=4>
                             Inicio
                         </font> <span class="sr-only">(current)</span></a>
@@ -53,35 +53,28 @@
                         </font>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item disabled" disabled>
+                            <font color="#4b3621" size=4>
+                                Tipos
+                            </font>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="desayuno.php">
                             <font color="#4b3621" size=4>
                                 Desayuno
                             </font>
                         </a>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="comida.php">
                             <font color="#4b3621" size=4>
                                 Comida
                             </font>
                         </a>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="cena.php">
                             <font color="#4b3621" size=4>
                                 Cena
                             </font>
                         </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">
-                            <font color="#4b3621" size=4>
-                                Postres
-                            </font>
-                        </a>
                     </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <font color="white" size=4>
-                            Ingreientes
-                        </font>
-                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="add.php">
@@ -92,8 +85,8 @@
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <a href="">
-                    <button class="btn btn-outline-warning my-2 my-sm-0">Contactanos</button>
+                <a href="contactanos.html">
+                    <p class="btn btn-outline-warning my-2 my-sm-0">Contactanos</p>
                 </a>
             </form>
         </div>
@@ -217,7 +210,7 @@
             </div>        
         </div> <br><br>
 
-        <div class="info text-white"> <br>
+        <div class="info text-white" style="width:70%;"> <br>
             <h1 class="display-4 ml-5 text-left">Pasos</h1> <br>
             <p class="lead ml-5 mr-5 text-left">Sigue esta serie de sencillos pasos para tener lista tu <b><?php echo $nombre; ?></b></p>
             <hr class="ml-5 mr-5" color="white"> <br>

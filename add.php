@@ -58,7 +58,7 @@
             <ul class="navbar-nav mr-auto justify-content-center">
                 <li class="nav-item">
                     <a class="nav-link" href="index.php">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <font color="white" size=4>
                             Inicio
                         </font> <span class="sr-only">(current)</span></a>
@@ -70,35 +70,28 @@
                         </font>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item disabled" disabled>
+                            <font color="#4b3621" size=4>
+                                Tipos
+                            </font>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="desayuno.php">
                             <font color="#4b3621" size=4>
                                 Desayuno
                             </font>
                         </a>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="comida.php">
                             <font color="#4b3621" size=4>
                                 Comida
                             </font>
                         </a>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="cena.php">
                             <font color="#4b3621" size=4>
                                 Cena
                             </font>
                         </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">
-                            <font color="#4b3621" size=4>
-                                Postres
-                            </font>
-                        </a>
                     </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <font color="white" size=4>
-                            Ingreientes
-                        </font>
-                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="add.php">
@@ -109,8 +102,8 @@
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <a href="">
-                    <button class="btn btn-outline-warning my-2 my-sm-0">Contactanos</button>
+                <a href="contactanos.html">
+                    <p class="btn btn-outline-warning my-2 my-sm-0">Contactanos</p>
                 </a>
             </form>
         </div>
@@ -534,6 +527,27 @@
             </div>
         </div>
     </div>
+
+    <footer class="text-center footer"> <br>
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <p class="ml-2 lead mr-2">
+                    <font size=4>
+                        Comer sano durante toda la vida ayuda a prevenir la malnutrición en todas sus formas, así como diversas enfermedades y trastornos no transmisibles. Sin embargo, el aumento en la producción de alimentos procesados, la rápida urbanización y los cambios en los estilos de vida han provocado cambios en los hábitos alimentarios. Actualmente, las personas consumen más alimentos hipercalóricos, grasas, azúcares libres y sal / sodio. Por otro lado, muchas personas no comen suficientes frutas, verduras y fibra como los cereales integrales.
+                    </font> <hr> <br>
+                    <font size=4>
+                        Necesitas ayuda? Visita estas paginas: <br>
+                    </font>
+                    <ul class="text-left">
+                        <li><a href="https://www.who.int/es/news-room/fact-sheets/detail/healthy-diet">https://www.who.int/es/news-room/fact-sheets/detail/healthy-diet</a></li>
+                        <li><a href="https://www.minsalud.gov.co/salud/publica/HS/Paginas/que-es-alimentacion-saludable.aspx">https://www.minsalud.gov.co/salud/publica/HS/Paginas/que-es-alimentacion-saludable.aspx</a></li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </footer>
+
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

@@ -19,7 +19,7 @@
     <title>Inicio</title>
 </head>
 
-<body class="bg-index">
+<body class="bg-cena">
     <!-- NAV -->
     <nav class="navbar navbar-expand-lg nav-obs">
         <a class="navbar-brand" href="index.php">
@@ -88,146 +88,81 @@
 
     <!-- COVER -->
     <div>
-        <center><br><br><br><br><br><br><br>
-            <h1>
-                <font size=7 color="white">TODO LO QUE NECESITA TU COCINA <br> ESTA AQUÍ</font>
-            </h1>
-        </center>
-
-        <div class="row">
-            <div class="col-sm-4">
-                <hr class="hr">
-            </div>
-            <div class="col-sm-4">
-                <h1 class="tittle-center">
-                    <center>
-                        El Mejor Recetario
-                    </center>
-                </h1>
-            </div>
-            <div class="col-sm-4">
-                <hr class="hr">
-            </div>
-        </div>
-
         <center><br><br>
             <h1>
-                <font size=5 color="white">Esta pagina fue creada para organizar las ideas de un cocinero, <br> desde los ingredientes y utensilios necesarios, hasta postres y comidas que se <br> pueden preparar con ellos, esto con pasos de cada uno <br> y con todo lo que es necesario</font>
+                <font size=7 color="white">Cenas</font>
             </h1>
-        </center> <br><br><br>
-        <center>
-            <a href="#suggest">
-                <img src="https://img.icons8.com/fluent-systems-filled/24/000000/chevron-down--v2.png"/>
-            </a>
-            <br><br><br>
-        </center>
+        </center> <br><br>
     </div>
 
     <!-- Sugerencias -->
-    <center>
     <form action="view.php" method="POST">
-        <a name="suggest"></a>
-        <div class="suggest">  <br><br>
-            <h1>
-                <font size=6 color="white">Sugerencias</font>
-            </h1><br>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="card border-primary mb-3 ml-2 mr-1">
-                        <div class="card-header">Desayuno</div>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <?php 
-                                    $sql = mysqli_query($con, "SELECT * FROM `platillo` WHERE `tipo_presentacion` = 1");
+       <div class="row mr-4">
+       <div class="col-sm-8">
+                <div class="info ml-5" style="width= 100%">  <br><br>
+                    <h1 class="ml-5">
+                        <font size=6 color="white">Recetas</font>
+                    </h1> <hr color="white" width="50%" align="left" class="ml-5">
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-6">
+                                <center>
+                                    <?php
+                                        $sql= "SELECT * FROM `platillo` WHERE `tipo_presentacion` = 3";
 
-                                    if(mysqli_num_rows($sql) != 0) {
-                                        $row = mysqli_fetch_assoc($sql);
-                                    }
+                                        if ($resultado = $con->query($sql)) {
                                     
-                                    echo $row ['contenido'];
-                                ?>
-                            </h4>
-                            <p class="card-text">
-                                <?php
-                                    echo $row ['comentarios'];
-                                    echo '
-                                        </p>
-                                        <a href="view.php?nik='.$row['contenido'].'"><p class="btn btn-primary">Ver Desayuno</p></a>
-                                        ';
-                                ?>
+                                            /* obtener un array asociativo */
+                                            while ($fila = $resultado->fetch_assoc()) {
+                                    ?>
+                                        <div class="card border-primary mb-3 ml-2 mr-1">
+                                            <div class="card-header">Cena</div>
+                                            <div class="card-body">
+                                                <h4 class="card-title">
+                                                    <?php 
+                                                        echo $fila ['contenido'];
+                                                    ?>
+                                                </h4>
+                                                <p class="card-text">
+                                                    <?php
+                                                        echo $fila ['comentarios'];
+                                                        echo '
+                                                            </p>
+                                                            <a href="view.php?nik='.$fila['contenido'].'"><p class="btn btn-primary">Ver Desayuno</p></a>
+                                                            ';
+                                                    ?>
+                                            </div>
+                                        </div>
+                                    <?php
+                                            }
+                                        
+                                            /* liberar el conjunto de resultados */
+                                            $resultado->free();
+                                        }
+                                    ?>
+                                </div>
+                            </center>
                         </div>
+                </div> <br><br>
+           </div>
+           <div class="col-sm-4">
+                <div class="info-cena text-left text-white lead"> <br>
+                    <div class="ml-3 mr-3">
+                        <h2 class="ml-2">La importancia de comer</h2>
+                        <hr size="80%" align="left" class="ml-2" color="white"> 
+                        <p>
+                            <font size="3">
+                            "Desayuna como un rey, come como un príncipe, come como un gar" Este es sin duda uno de los refranes más famosos en el campo de la nutrición. Sin embargo, en el otro extremo, es importante no "saltarse" esta hora de comida, porque durante el sueño, ayunamos más tiempo que en otros momentos del día. Por lo tanto, la solución es la cena, que puede reponer las reservas esenciales de glucógeno durante el sueño. Sugerencias de cena Además del desayuno y la cena, también conviene cenar temprano para asegurar una mejor digestión y absorción de los alimentos, y evitar síntomas molestos que pueden provocar trastornos del sueño, como flatulencias e hinchazón. El conocimiento básico de una cena saludable es el mismo que el del almuerzo. Su última comida debe contener alrededor de 300-450 kcal, que provienen de fibra y proteína y una pequeña cantidad de grasa vegetal.
+                            <br>
+                            Debe incluir al menos tres categorías de alimentos: frutas / verduras, cereales y alimentos de origen animal. Debe limitarse a grasas saturadas y azúcares simples. 
+                            <br><br>
+                            </font>
+                        </p>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="card border-primary mb-3 ml-1 mr-1">
-                        <div class="card-header">Comida</div>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <?php 
-                                    $sql = mysqli_query($con, "SELECT * FROM `platillo` WHERE `tipo_presentacion` = 2");
-
-                                    if(mysqli_num_rows($sql) != 0) {
-                                        $row = mysqli_fetch_assoc($sql);
-                                    }
-                                    
-                                    echo $row ['contenido'];
-                                ?>
-                            </h4>
-                            <p class="card-text">
-                                <?php
-                                    echo $row ['comentarios'];
-                                    echo '
-                                        </p>
-                                        <a href="view.php?nik='.$row['contenido'].'"><p class="btn btn-primary">Ver Comida</p></a>
-                                        ';
-                                ?>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="card border-primary mb-3 ml-1 mr-2">
-                        <div class="card-header">Cena</div>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <?php 
-                                    $sql = mysqli_query($con, "SELECT * FROM `platillo` WHERE `tipo_presentacion` = 3");
-
-                                    if(mysqli_num_rows($sql) != 0) {
-                                        $row = mysqli_fetch_assoc($sql);
-                                    }
-                                    
-                                    echo $row ['contenido'];
-                                ?>
-                            </h4>
-                            <p class="card-text">
-                                <?php
-                                    echo $row ['comentarios'];
-                                    echo '
-                                        </p>
-                                        <a href="view.php?nik='.$row['contenido'].'"><p class="btn btn-primary">Ver Cena</p></a>
-                                        ';
-                                ?>
-                        </div>
-                    </div>
-                </div>
-            </div>        
-        </div> <br><br>
-
-        <div class="info text-white" style="width:70%"> <br>
-            <h1 class="display-4 ml-5 text-left">Alimentate Sanamente</h1> <br>
-            <p class="lead ml-5 mr-5 text-left">Una dieta saludable se compone de una amplia variedad de alimentos que le brindan los nutrientes que necesita para mantenerse saludable, sentirse bien y tener energía. Estos nutrientes incluyen proteínas, carbohidratos, grasas, agua, vitaminas y minerales.</p>
-            <hr class="ml-5 mr-5" color="white"> <br>
-            <div class="row">
-                <div class="col-sm-5 ml-5">
-                    <p class="lead ml-5 mr-5 text-left">La dieta es importante para todos. Cuando se combina con actividad física y un peso saludable, una buena nutrición es una excelente manera de ayudar a su cuerpo a mantenerse fuerte y saludable. Una buena nutrición es particularmente importante si tiene cáncer de mama o está en tratamiento. Lo que come puede afectar su sistema inmunológico, estado de ánimo y niveles de energía.</p>
-                </div>
-                <div class="col-sm-5 ml-4 mr-5">
-                    <img src="https://www.finut.org/wp-content/uploads/2018/12/Gu%C3%ADa.jpg" width="80%">
-                </div>
-            </div> <br>
-        </div> <br><br>
+           </div>
+       </div>
     </form>    
-    </center>
 
     <footer class="text-center footer"> <br>
         <div class="row">

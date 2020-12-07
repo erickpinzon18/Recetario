@@ -19,7 +19,7 @@
     <title>Inicio</title>
 </head>
 
-<body class="bg-index">
+<body class="bg-desayuno">
     <!-- NAV -->
     <nav class="navbar navbar-expand-lg nav-obs">
         <a class="navbar-brand" href="index.php">
@@ -88,146 +88,83 @@
 
     <!-- COVER -->
     <div>
-        <center><br><br><br><br><br><br><br>
-            <h1>
-                <font size=7 color="white">TODO LO QUE NECESITA TU COCINA <br> ESTA AQUÍ</font>
-            </h1>
-        </center>
-
-        <div class="row">
-            <div class="col-sm-4">
-                <hr class="hr">
-            </div>
-            <div class="col-sm-4">
-                <h1 class="tittle-center">
-                    <center>
-                        El Mejor Recetario
-                    </center>
-                </h1>
-            </div>
-            <div class="col-sm-4">
-                <hr class="hr">
-            </div>
-        </div>
-
         <center><br><br>
             <h1>
-                <font size=5 color="white">Esta pagina fue creada para organizar las ideas de un cocinero, <br> desde los ingredientes y utensilios necesarios, hasta postres y comidas que se <br> pueden preparar con ellos, esto con pasos de cada uno <br> y con todo lo que es necesario</font>
+                <font size=7 color="white">Desayunos</font>
             </h1>
-        </center> <br><br><br>
-        <center>
-            <a href="#suggest">
-                <img src="https://img.icons8.com/fluent-systems-filled/24/000000/chevron-down--v2.png"/>
-            </a>
-            <br><br><br>
-        </center>
+        </center> <br><br>
     </div>
 
     <!-- Sugerencias -->
-    <center>
     <form action="view.php" method="POST">
-        <a name="suggest"></a>
-        <div class="suggest">  <br><br>
-            <h1>
-                <font size=6 color="white">Sugerencias</font>
-            </h1><br>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="card border-primary mb-3 ml-2 mr-1">
-                        <div class="card-header">Desayuno</div>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <?php 
-                                    $sql = mysqli_query($con, "SELECT * FROM `platillo` WHERE `tipo_presentacion` = 1");
+       <div class="row mr-4">
+            <div class="col-sm-8">
+                <div class="info ml-5" style="width= 100%">  <br><br>
+                    <h1 class="ml-5">
+                        <font size=6 color="white">Recetas</font>
+                    </h1> <hr color="white" width="50%" align="left" class="ml-5">
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-6">
+                                <center>
+                                    <?php
+                                        $sql= "SELECT * FROM `platillo` WHERE `tipo_presentacion` = 1";
 
-                                    if(mysqli_num_rows($sql) != 0) {
-                                        $row = mysqli_fetch_assoc($sql);
-                                    }
+                                        if ($resultado = $con->query($sql)) {
                                     
-                                    echo $row ['contenido'];
-                                ?>
-                            </h4>
-                            <p class="card-text">
-                                <?php
-                                    echo $row ['comentarios'];
-                                    echo '
-                                        </p>
-                                        <a href="view.php?nik='.$row['contenido'].'"><p class="btn btn-primary">Ver Desayuno</p></a>
-                                        ';
-                                ?>
+                                            /* obtener un array asociativo */
+                                            while ($fila = $resultado->fetch_assoc()) {
+                                    ?>
+                                        <div class="card border-primary mb-3 ml-2 mr-1">
+                                            <div class="card-header">Desayuno</div>
+                                            <div class="card-body">
+                                                <h4 class="card-title">
+                                                    <?php 
+                                                        echo $fila ['contenido'];
+                                                    ?>
+                                                </h4>
+                                                <p class="card-text">
+                                                    <?php
+                                                        echo $fila ['comentarios'];
+                                                        echo '
+                                                            </p>
+                                                            <a href="view.php?nik='.$fila['contenido'].'"><p class="btn btn-primary">Ver Desayuno</p></a>
+                                                            ';
+                                                    ?>
+                                            </div>
+                                        </div>
+                                    <?php
+                                            }
+                                        
+                                            /* liberar el conjunto de resultados */
+                                            $resultado->free();
+                                        }
+                                    ?>
+                                </div>
+                            </center>
                         </div>
+                </div> <br><br>
+           </div>
+           <div class="col-sm-4">
+                <div class="info-desayuno text-left text-white lead"> <br>
+                    <div class="ml-3 mr-3">
+                        <h2 class="ml-2">La importancia de desayunar</h2>
+                        <hr size="80%" align="left" class="ml-2" color="white"> 
+                        <p>
+                            <font size="3">
+                            Para muchos adolescentes, el trabajo rutinario de esta mañana ya es común, pero esto es un problema. "El desayuno se considera la comida más importante en la actualidad", dijo el Dr. William Cochran, vicepresidente de la Academia Estadounidense de Pediatría (FAAP), ex miembro del Comité de Nutrición de la Academia Estadounidense de Pediatría, del Departamento de Pediatría de la Clínica Geisinger en Danville, Pensilvania. "Como primera comida, permite que el cuerpo funcione durante el resto del día.
+                            <br>
+                            Sin embargo, la realidad es que saltarse el desayuno tiene más probabilidades de provocar un aumento de peso que prevenirlo. El Journal of Pediatrics citó un estudio de 2008 que encontró que los adolescentes que se saltan el desayuno todos los días tienen un índice de masa corporal más bajo que los que nunca desayunan o lo hacen solo ocasionalmente.
+                            <br>
+                            La ironía es que quienes desayunan tienen más calorías, fibra y colesterol en sus dietas en comparación con los niños que se saltan el desayuno. Sin embargo, los niños que desayunan también tienen menos grasas saturadas en su dieta. El Dr. Schneider dijo: "El predictor más importante de comer en exceso es comer poco". "Muchos de estos niños se saltan el desayuno y el almuerzo, pero luego se fueron a casa y no dejaron de comer".
+                            <br><br>
+                            </font>
+                        </p>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="card border-primary mb-3 ml-1 mr-1">
-                        <div class="card-header">Comida</div>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <?php 
-                                    $sql = mysqli_query($con, "SELECT * FROM `platillo` WHERE `tipo_presentacion` = 2");
-
-                                    if(mysqli_num_rows($sql) != 0) {
-                                        $row = mysqli_fetch_assoc($sql);
-                                    }
-                                    
-                                    echo $row ['contenido'];
-                                ?>
-                            </h4>
-                            <p class="card-text">
-                                <?php
-                                    echo $row ['comentarios'];
-                                    echo '
-                                        </p>
-                                        <a href="view.php?nik='.$row['contenido'].'"><p class="btn btn-primary">Ver Comida</p></a>
-                                        ';
-                                ?>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="card border-primary mb-3 ml-1 mr-2">
-                        <div class="card-header">Cena</div>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <?php 
-                                    $sql = mysqli_query($con, "SELECT * FROM `platillo` WHERE `tipo_presentacion` = 3");
-
-                                    if(mysqli_num_rows($sql) != 0) {
-                                        $row = mysqli_fetch_assoc($sql);
-                                    }
-                                    
-                                    echo $row ['contenido'];
-                                ?>
-                            </h4>
-                            <p class="card-text">
-                                <?php
-                                    echo $row ['comentarios'];
-                                    echo '
-                                        </p>
-                                        <a href="view.php?nik='.$row['contenido'].'"><p class="btn btn-primary">Ver Cena</p></a>
-                                        ';
-                                ?>
-                        </div>
-                    </div>
-                </div>
-            </div>        
-        </div> <br><br>
-
-        <div class="info text-white" style="width:70%"> <br>
-            <h1 class="display-4 ml-5 text-left">Alimentate Sanamente</h1> <br>
-            <p class="lead ml-5 mr-5 text-left">Una dieta saludable se compone de una amplia variedad de alimentos que le brindan los nutrientes que necesita para mantenerse saludable, sentirse bien y tener energía. Estos nutrientes incluyen proteínas, carbohidratos, grasas, agua, vitaminas y minerales.</p>
-            <hr class="ml-5 mr-5" color="white"> <br>
-            <div class="row">
-                <div class="col-sm-5 ml-5">
-                    <p class="lead ml-5 mr-5 text-left">La dieta es importante para todos. Cuando se combina con actividad física y un peso saludable, una buena nutrición es una excelente manera de ayudar a su cuerpo a mantenerse fuerte y saludable. Una buena nutrición es particularmente importante si tiene cáncer de mama o está en tratamiento. Lo que come puede afectar su sistema inmunológico, estado de ánimo y niveles de energía.</p>
-                </div>
-                <div class="col-sm-5 ml-4 mr-5">
-                    <img src="https://www.finut.org/wp-content/uploads/2018/12/Gu%C3%ADa.jpg" width="80%">
-                </div>
-            </div> <br>
-        </div> <br><br>
+           </div>
+       </div>
     </form>    
-    </center>
 
     <footer class="text-center footer"> <br>
         <div class="row">
